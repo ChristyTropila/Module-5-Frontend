@@ -1,0 +1,50 @@
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+.App{
+  position:relative;
+  background:grey;
+  color: black;
+  font-size: 40px;
+  height: auto;
+  width: auto;
+}
+
+body{
+  position:relative;
+  background: pink;
+}
+
+.navContainer{
+background:blue;
+display: flex;
+justify-content: space-around;
+align-items: center;
+min-height: 5px;
+}
+
+.logo{
+  color:white;
+  background:green;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-size: 40px;
+}
+.navList{
+  list-style: none;
+  background: red;
+  display:flex;
+  justify-content: space-around;
+  width: 50%;
+  
+}
+
+
+@media screen and (max-width:760px){
+  body{
+    display:none;
+  }
+}
