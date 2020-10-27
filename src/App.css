@@ -48,3 +48,27 @@ min-height: 5px;
     display:none;
   }
 }
+
+.modal-wrapper{
+  position: fixed;
+  top: 50%;
+  left: 80%;
+  transform: translate(-50%, -50%);
+  background:purple
+}
+
+.listingContainer{
+  background: lightcoral;
+  width:40%;
+  border-style: solid;
+  border-radius: 5px;
+  border-color: black;
+}
+
+.list{
+  background:lightgreen; 
+  width:40%;
+  border-style: solid;
+  border-width: 10px;
+  border-color: black;
+}

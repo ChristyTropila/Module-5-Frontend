@@ -20,12 +20,20 @@ componentDidMount(){
   })
 }
 
+//use arrow function or undefined
+sendNetToGetListing=(newListing)=>{
+ let copyOfListings=[...this.state.listings, newListing]
+ this.setState({
+   listings: copyOfListings
+ })
+}
+
   render(){  
 
     
     return (
     <div className="App">
-      <NavContainer/>
+      <NavContainer sendNetToGetListing={this.sendNetToGetListing}/>
       <ListingContainer listings={this.state.listings}/>
        
     </div>

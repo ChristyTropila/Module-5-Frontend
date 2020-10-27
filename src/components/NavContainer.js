@@ -1,13 +1,28 @@
 import React from 'react'
+import Modal from './Modal'
 
 class NavContainer extends React.Component{
-    handleClick=()=>{
 
+    state={
+        openModal: false
     }
 
 
+    handleClick=()=>{
+      this.setState({
+          openModal: true
+      })
+    }
+
+    closeModal=()=>{
+        this.setState({
+            openModal:false
+        })
+    }
+
     render(){
         return(
+            <>
             <nav className="navContainer">
                 <h1 className="logo">Spot-A-Potty</h1>
                <ul className="navList">
@@ -18,6 +33,8 @@ class NavContainer extends React.Component{
                </ul>
 
             </nav>
+        {this.state.openModal ? <Modal closeModal={this.closeModal} sendNetToGetListing={this.props.sendNetToGetListing} showModal={this.state.openModal}/> : null}
+</>
         )
     }
 }

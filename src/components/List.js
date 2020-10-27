@@ -7,6 +7,7 @@ class List extends React.Component{
    
            
         return(
+            <div className="list">
          <li>
              <h3>Host: <span>{user.name}</span></h3>
              <h4>Contact: <span>{user.contact}</span></h4>
@@ -14,6 +15,7 @@ class List extends React.Component{
              <p>Lng: <span>{lng}</span></p>
              <p>Available: <span>{available ? "true": "false"}</span></p>
          </li>
+         </div>
         )
     }
 }

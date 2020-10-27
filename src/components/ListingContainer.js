@@ -11,9 +11,11 @@ function ListingContainer(props){
         />
     })
        return(
+           <div className="listingContainer">
            <ul>
                {arrayOfListings}
            </ul>
+           </div>
        )
 
 }
