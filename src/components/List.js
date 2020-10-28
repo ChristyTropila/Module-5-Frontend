@@ -1,20 +1,33 @@
 import React from 'react'
+import ListModal from './ListModal'
 
 class List extends React.Component{
-    render(){
 
-        let{lat, lng, available, user}=this.props.list
+    state={
+        displayModal: false
+    }
+
+    handleClickedList=()=>{
+        this.setState({
+            displayModal:true
+        })
+    }
+    closeListModal=()=>{
+        this.setState({
+            displayModal:false
+        })
+    }
+    render(){
+        let{lat, lng, available, user, id}=this.props.list
    
            
-        return(
-            <div className="list">
+     return(
+      <div onClick={this.handleClickedList} className="list">
          <li>
-             <h3>Host: <span>{user.name}</span></h3>
-             <h4>Contact: <span>{user.contact}</span></h4>
-             <p>Lat: <span>{lat}</span></p>
-             <p>Lng: <span>{lng}</span></p>
-             <p>Available: <span>{available ? "true": "false"}</span></p>
+             <h3>List Number: <span>{id}</span></h3>
          </li>
+         {this.state.displayModal ? <ListModal closeListModal={this.closeListModal} changeAvailable={this.props.changeAvailable} list={this.props.list}/>: null}
+
          </div>
         )
     }

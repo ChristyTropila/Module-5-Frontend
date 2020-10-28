@@ -8,6 +8,7 @@ function ListingContainer(props){
         return<List
         key={list.id}
         list={list}
+        changeAvailable={props.changeAvailable}
         />
     })
        return(
