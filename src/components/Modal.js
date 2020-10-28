@@ -40,13 +40,13 @@ class Modal extends React.Component{
 
     render(){
         return(
-            <div className="modal-wrapper"
+         <div className="modal-wrapper"
             style={{
                 opacity: this.props.showModal ? '1' : '0'
             }}
             >
                 <form className="listing-form" onSubmit={this.handleSubmit}>
-                    <div className="list-form">
+                <div className="list-form">
                     <h4>Create A Listing</h4>
                         <input type="text" name="lat" value={this.state.lat} onChange={this.handleInputChange} placeholder="Lat"/>
                         <input type="text" name="lng" value={this.state.lng} onChange={this.handleInputChange} placeholder="Lng"/>
