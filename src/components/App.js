@@ -8,7 +8,8 @@ import LoginRegister from './LoginRegister'
 class App extends React.Component {
 
 state={
-  listings: []
+  listings: [],
+  currentUser: []
 }
 
 componentDidMount(){
@@ -49,6 +50,13 @@ sendNetToChangeAvailability=(listing)=>{
   
       })
     }
+
+
+sendNetToGetUser=(userObj)=>{
+  this.setState({
+    currentUser: userObj
+  })
+}
   
 
 //use arrow function or undefined
@@ -61,12 +69,11 @@ sendNetToGetListing=(newListing)=>{
 
   render(){  
 
-    
     return (
     <div className="App">
-      <NavContainer sendNetToGetListing={this.sendNetToGetListing}/>
-      <LoginRegister/>
-      <ListingContainer changeAvailable={this.sendNetToChangeAvailability} listings={this.state.listings}/>
+      <NavContainer currentUser={this.state.currentUser} sendNetToGetListing={this.sendNetToGetListing}/>
+      <LoginRegister getUser={this.sendNetToGetUser}/>
+      <ListingContainer currentUser={this.state.currentUser} changeAvailable={this.sendNetToChangeAvailability} listings={this.state.listings}/>
        
     </div>
   );

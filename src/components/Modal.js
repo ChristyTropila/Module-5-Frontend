@@ -25,7 +25,7 @@ class Modal extends React.Component{
               body: JSON.stringify({
                   lat: this.state.lat,
                   lng: this.state.lng,
-                  user_id: 4,
+                  user_id: this.props.currentUser.id,
                   available: true
               })
           })

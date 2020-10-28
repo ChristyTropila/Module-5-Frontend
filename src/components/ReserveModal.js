@@ -20,7 +20,7 @@ class ReserveModal extends React.Component{
                 "Content-Type": 'Application/json'
             },
             body: JSON.stringify({
-                user_id: 3,
+                user_id: this.props.currentUser.id,
                 listing_id: this.props.list.id,
                 booking_time: this.state.time
         })

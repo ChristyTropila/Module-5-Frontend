@@ -9,6 +9,7 @@ function ListingContainer(props){
         key={list.id}
         list={list}
         changeAvailable={props.changeAvailable}
+        currentUser={props.currentUser}
         />
     })
        return(

@@ -33,7 +33,7 @@ class LoginRegister extends React.Component{
         })
         .then(res=>res.json())
         .then((newUser)=>{
-            console.log(newUser)
+           this.props.getUser(newUser)
         })
 
     }
