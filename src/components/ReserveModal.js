@@ -28,6 +28,8 @@ class ReserveModal extends React.Component{
     .then(res=>res.json())
     .then((newReserve)=>{
         this.props.changeAvailable(newReserve)
+        this.props.closeModal()
+        this.props.closeListModal()
     })
 }
     

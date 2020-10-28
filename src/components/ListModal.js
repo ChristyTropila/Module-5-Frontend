@@ -14,6 +14,14 @@ class ListModal extends React.Component{
         })
     }
 
+    closeModal=()=>{
+        this.setState({
+            showModal:false
+        })
+    }
+
+
+
     render(){
         let{lat, lng, available, user, id}=this.props.list
         return(
@@ -29,7 +37,7 @@ class ListModal extends React.Component{
             <h3>Back</h3>
             <h3 onClick={this.handleReserveClick}>Reserve</h3>
             </div>
-              {this.state.showModal ? <ReserveModal changeAvailable={this.props.changeAvailable} showModal={this.state.showModal} list={this.props.list} />: null}
+              {this.state.showModal ? <ReserveModal closeListModal={this.props.closeListModal} closeModal={this.closeModal} changeAvailable={this.props.changeAvailable} showModal={this.state.showModal} list={this.props.list} />: null}
             </div>
         )
     }

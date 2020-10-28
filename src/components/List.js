@@ -12,7 +12,11 @@ class List extends React.Component{
             displayModal:true
         })
     }
-
+    closeListModal=()=>{
+        this.setState({
+            displayModal:false
+        })
+    }
     render(){
         let{lat, lng, available, user, id}=this.props.list
    
@@ -22,7 +26,7 @@ class List extends React.Component{
          <li>
              <h3>List Number: <span>{id}</span></h3>
          </li>
-         {this.state.displayModal ? <ListModal changeAvailable={this.props.changeAvailable} list={this.props.list}/>: null}
+         {this.state.displayModal ? <ListModal closeListModal={this.closeListModal} changeAvailable={this.props.changeAvailable} list={this.props.list}/>: null}
 
          </div>
         )
