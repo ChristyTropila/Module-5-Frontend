@@ -7,7 +7,9 @@ class LoginRegister extends React.Component{
       email: '',
       password: '',
       age: '',
-      contact: ''
+      contact: '',
+      emailLogin: '',
+      passwordLogin: ''
     }
 
     handleInputChange=(evt)=>{
@@ -15,6 +17,30 @@ class LoginRegister extends React.Component{
           [evt.target.name]: evt.target.value
         })
       }
+    
+    handleLoginInputChange=(evt)=>{
+        this.setState({
+            [evt.target.name]: evt.target.value
+        })
+    }
+
+    handleLoginSubmit=(evt)=>{
+        evt.preventDefault()
+        fetch(`http://localhost:5000/users/login`,{
+            method: 'POST',
+            headers: {
+              "Content-Type": "Application/json"
+            },
+            body: JSON.stringify({
+             email: this.state.emailLogin,
+             password: this.state.passwordLogin
+            }) 
+        })
+        .then(res=>res.json())
+        .then((loggedInUser)=>{
+            this.props.getUser(loggedInUser)
+        })
+    }
 
     handleSubmit=(evt)=>{
         evt.preventDefault()
@@ -52,6 +78,14 @@ render(){
     <input type="text" name="contact"  value={this.state.contact} onChange={this.handleInputChange} placeholder="Contact Number" />
    </div>
       <button className="create-acct-button" type="submit">Submit</button>
+     </form>
+
+     <form className="create-account-form"  onSubmit={this.handleLoginSubmit}>
+    <div className="create-account-input">
+    <input type="text" name="emailLogin" value={this.state.emailLogin} onChange={this.handleLoginInputChange} placeholder="Email" />
+    <input type="text" name="passwordLogin"  value={this.state.passwordLogin} onChange={this.handleLoginInputChange} placeholder="Password" />
+   </div>
+      <button className="create-acct-button" type="submit">Login</button>
      </form>
      </div>
         )
