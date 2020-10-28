@@ -29,7 +29,7 @@ class ListModal extends React.Component{
             <h3>Back</h3>
             <h3 onClick={this.handleReserveClick}>Reserve</h3>
             </div>
-              {this.state.showModal ? <ReserveModal showModal={this.state.showModal} list={this.props.list} />: null}
+              {this.state.showModal ? <ReserveModal changeAvailable={this.props.changeAvailable} showModal={this.state.showModal} list={this.props.list} />: null}
             </div>
         )
     }

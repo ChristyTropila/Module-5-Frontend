@@ -20,6 +20,24 @@ componentDidMount(){
   })
 }
 
+sendNetToChangeAvailability=(listing)=>{
+  fetch(`http://localhost:5000/listings/${listing.listing_id}`, {
+    method: 'PATCH',
+    headers: {
+        "Content-Type": 'Application/json'
+    },
+    body: JSON.stringify({
+      id: listing.listing_id
+    })
+  })
+    .then(res=>res.json())
+    .then((updatedListing)=>{
+       this.componentDidMount()
+  
+      })
+    }
+  
+
 //use arrow function or undefined
 sendNetToGetListing=(newListing)=>{
  let copyOfListings=[...this.state.listings, newListing]
@@ -34,7 +52,7 @@ sendNetToGetListing=(newListing)=>{
     return (
     <div className="App">
       <NavContainer sendNetToGetListing={this.sendNetToGetListing}/>
-      <ListingContainer listings={this.state.listings}/>
+      <ListingContainer changeAvailable={this.sendNetToChangeAvailability} listings={this.state.listings}/>
        
     </div>
   );
