@@ -3,6 +3,7 @@ import '../App.css';
 import React from 'react'
 import NavContainer from './NavContainer.js'
 import ListingContainer from './ListingContainer'
+import LoginRegister from './LoginRegister'
 
 class App extends React.Component {
 
@@ -64,6 +65,7 @@ sendNetToGetListing=(newListing)=>{
     return (
     <div className="App">
       <NavContainer sendNetToGetListing={this.sendNetToGetListing}/>
+      <LoginRegister/>
       <ListingContainer changeAvailable={this.sendNetToChangeAvailability} listings={this.state.listings}/>
        
     </div>

@@ -77,7 +77,7 @@ input{
 
 .listingContainer{
   background: lightcoral;
-  width:40%;
+  width:50%;
   border-style: solid;
   border-radius: 5px;
   border-color: black;
@@ -95,4 +95,23 @@ input{
   background: orange;
   left: 50%;
   list-style: none;
+}
+
+.login-register{
+  background:yellow;
+  width: 50%;
+}
+
+.create-account-form{
+  width: 40%;
+}
+
+.create-account-input{
+  font-size: 20px;
+  
+}
+
+.create-acct-button{
+  width:100px;
+  height: 50px;
 }
