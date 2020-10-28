@@ -20,6 +20,7 @@ componentDidMount(){
   })
 }
 
+//When a user reserves a listing, update the available attritute to false
 sendNetToChangeAvailability=(listing)=>{
   fetch(`http://localhost:5000/listings/${listing.listing_id}`, {
     method: 'PATCH',
@@ -33,10 +34,10 @@ sendNetToChangeAvailability=(listing)=>{
     .then(res=>res.json())
     .then((updatedListing)=>{
 
-      const elementIndex=this.state.listings.findIndex(element =>
+     const elementIndex=this.state.listings.findIndex(element =>
          element.id === updatedListing.id)
       
-      let copyOfState=[...this.state.listings]
+    let copyOfState=[...this.state.listings]
       copyOfState[elementIndex]={...copyOfState[elementIndex], 
         available: updatedListing.available
       }
@@ -44,7 +45,6 @@ sendNetToChangeAvailability=(listing)=>{
       this.setState({
         listings: copyOfState
       })
-      //  this.componentDidMount()
   
       })
     }

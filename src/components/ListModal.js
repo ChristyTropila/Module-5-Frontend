@@ -31,7 +31,7 @@ class ListModal extends React.Component{
                 <h4>Contact: <span>{user.contact}</span></h4>
                 <p>Lat: <span>{lat}</span></p>
                 <p>Lng: <span>{lng}</span></p>
-                <p>Available: <span>{available ? "true": "false"}</span></p>
+                <p>Available: <span>{available ? "Open": "Not Available"}</span></p>
             </li>
             <div className="modal-nav">
             <h3>Back</h3>
