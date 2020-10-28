@@ -32,7 +32,19 @@ sendNetToChangeAvailability=(listing)=>{
   })
     .then(res=>res.json())
     .then((updatedListing)=>{
-       this.componentDidMount()
+
+      const elementIndex=this.state.listings.findIndex(element =>
+         element.id === updatedListing.id)
+      
+      let copyOfState=[...this.state.listings]
+      copyOfState[elementIndex]={...copyOfState[elementIndex], 
+        available: updatedListing.available
+      }
+
+      this.setState({
+        listings: copyOfState
+      })
+      //  this.componentDidMount()
   
       })
     }

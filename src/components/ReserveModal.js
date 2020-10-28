@@ -40,8 +40,7 @@ class ReserveModal extends React.Component{
  return(
     <div className="reservation-wrapper"
         style={{
-            opacity: this.props.showModal ? '1' : '0'
-        }}
+            opacity: this.props.showModal ? '1' : '0'}}
         >
         <form className="reservation-form" onSubmit={this.handleSubmit}>
         <div className="reserve-form">
