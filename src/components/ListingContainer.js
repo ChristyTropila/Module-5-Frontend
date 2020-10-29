@@ -13,10 +13,17 @@ function ListingContainer(props){
         />
     })
        return(
-           <div className="listingContainer">
-           <ul>
+     <div className="listingContainer">
+        <List
+        list={props.listings}
+        changeAvailable={props.changeAvailable}
+        currentUser={props.currentUser}
+        />
+
+
+           {/* <ul>
                {arrayOfListings}
-           </ul>
+           </ul> */}
            </div>
        )
 
