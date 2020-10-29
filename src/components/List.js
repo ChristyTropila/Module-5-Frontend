@@ -4,7 +4,9 @@ import {Map, GoogleApiWrapper, Marker} from 'google-maps-react'
 import {API_K, LOC_K} from './config_keys'
 import mapStyles from './mapStyles'
 
-let icons='https://snazzy-maps-cdn.azureedge.net/assets/marker-7fc0d75b-2b22-4e1f-8756-7b96f9b8db6c.png'
+
+let hostIcon='https://res.cloudinary.com/dm3tfsraw/image/upload/v1604008205/littleman_xmjgpr.png'
+let listingIcons='https://res.cloudinary.com/dm3tfsraw/image/upload/v1604008457/toilet_mmznr8.png'
 
 class List extends React.Component{
 
@@ -59,16 +61,22 @@ class List extends React.Component{
      console.log("hello")
     }
     
+   
     displayMarkers = () => {
-          return <Marker icon={icons} position={{
-           lat: this.state.userLocation.lat,
-           lng: this.state.userLocation.lng
-          }}
-           /> }
+        return this.props.list.map((list, index) => {
+          return <Marker icon={listingIcons} key={index} id={list.id}  position={{
+           lat: list.lat,
+           lng: list.lng
+         }}
+         onClick={() => this.handleClickedHouse(index)} />
+         
+        })
+      }
       
 render(){
   const {lat, lng, available, user, id}=this.props.list
   const {userLocation} = this.state
+//   let hostIcon=require("../images/littleman.png")
  
 return(
  <> 
@@ -81,10 +89,12 @@ return(
                 zoom={18}
                 initialCenter={userLocation}
                 disableDefaultUI= {true}>
-         <Marker icon={icons} position={{
+         <Marker icon={hostIcon} position={{
            lat: this.state.userLocation.lat,
            lng: this.state.userLocation.lng
           }}/>
+
+          {this.displayMarkers()}
                 </Map>
                 </div>
                 : 
