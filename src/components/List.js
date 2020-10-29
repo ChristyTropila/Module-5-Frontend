@@ -2,7 +2,9 @@ import React from 'react'
 //import ListModal from './ListModal'
 import {Map, GoogleApiWrapper, Marker} from 'google-maps-react'
 import {API_K, LOC_K} from './config_keys'
+import mapStyles from './mapStyles'
 
+let icons='https://snazzy-maps-cdn.azureedge.net/assets/marker-7fc0d75b-2b22-4e1f-8756-7b96f9b8db6c.png'
 
 class List extends React.Component{
 
@@ -57,38 +59,38 @@ class List extends React.Component{
      console.log("hello")
     }
     
+    displayMarkers = () => {
+          return <Marker icon={icons} position={{
+           lat: this.state.userLocation.lat,
+           lng: this.state.userLocation.lng
+          }}
+           /> }
+      
 render(){
-
-    console.log(this.state.userLocation)
   const {lat, lng, available, user, id}=this.props.list
   const {userLocation} = this.state
-  console.log(userLocation)
-
-return(
-    <> 
-  {this.state.userLocation.lat !== 0 ?
- <div className="list" 
-        style={{
-             position: "relative",
-              width: "100%", 
-              height: "945px",
-              borderRadius: "20px",
-              
-            }} className="map"
-          >
-     <Map google={this.props.google}
-        style={{width: '100%', height: '100%'}}
-        className={'map'}
-        zoom={15}
-        initialCenter={userLocation}
-        disableDefaultUI= {true}>
-
-        </Map>
-        </div>
-        : 
-        null}
  
-        
+return(
+ <> 
+     {this.state.userLocation.lat !== 0 ?
+         <div className="list" 
+          >
+            <Map google={this.props.google}
+                styles={mapStyles.styles}
+                className={'map'}
+                zoom={18}
+                initialCenter={userLocation}
+                disableDefaultUI= {true}>
+         <Marker icon={icons} position={{
+           lat: this.state.userLocation.lat,
+           lng: this.state.userLocation.lng
+          }}/>
+                </Map>
+                </div>
+                : 
+                null}
+ 
+
 
       {/* <div onClick={this.handleClickedList} className="list">
          <li>
