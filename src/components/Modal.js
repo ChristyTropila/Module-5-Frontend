@@ -61,7 +61,7 @@ class Modal extends React.Component{
               <h2>Enter Your Address</h2>
             <input
               {...getInputProps({
-                placeholder: 'Search Places ...',
+                placeholder: 'Start Typing ...',
                 className: 'location-search-input',
               })}
             />

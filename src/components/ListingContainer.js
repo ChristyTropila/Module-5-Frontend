@@ -19,11 +19,13 @@ function ListingContainer(props){
         changeAvailable={props.changeAvailable}
         currentUser={props.currentUser}
         />
+         <div className="box"></div>
+
+         <div className="box-2"></div>
+      
 
 
-           {/* <ul>
-               {arrayOfListings}
-           </ul> */}
+
            </div>
        )
 

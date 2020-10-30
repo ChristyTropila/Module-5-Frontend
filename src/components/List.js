@@ -67,7 +67,7 @@ render(){
             <Map google={this.props.google}
                 styles={mapStyles.styles}
                 className={'map'}
-                zoom={18}
+                zoom={17}
                 initialCenter={userLocation}
                 disableDefaultUI= {true}>
          <Marker icon={hostIcon} position={{

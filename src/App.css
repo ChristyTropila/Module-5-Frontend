@@ -1,12 +1,13 @@
 *{
   margin: 0px;
-  padding: 0px;
+  padding:2px;
   box-sizing: border-box;
+
 }
 
 .App{
   position:relative;
-  background:grey;
+  background:white;
   color: black;
   font-size: 40px;
   height: auto;
@@ -15,31 +16,63 @@
 
 body{
   position:relative;
-  background: pink;
+  background: black;
+
 }
 
 .navContainer{
-background:blue;
-display: flex;
+
 justify-content: space-around;
 align-items: center;
-min-height: 5px;
+height:140px;
+margin-left:40px;
+
+
+/* border: solid;
+border-color: black;
+border-left: hidden;
+border-right: hidden;
+border-width: 15px;
+
+margin-bottom: 3px; */
+
 }
 
 .logo{
   color:white;
-  background:green;
+  margin-top:0px;
+  width:fit-content;
   text-transform: uppercase;
   letter-spacing: 5px;
-  font-size: 40px;
+  font-size: 100px;
+  color:black;
 }
 .navList{
+  /* display: block; */
+  color: #000;
+  font-size: 50px;
+  padding: 8px 16px;
+}
+  
+  /* display: block;
+width:100px;
   list-style: none;
   background: red;
-  display:flex;
-  justify-content: space-around;
-  width: 50%;
+  float:left;
+  margin-right:400px;
+  margin-top:50px;
+  justify-content: space-around; */
   
+.li-nav{
+  display: block;
+  color: #000;
+  padding: 20px 10px;
+  text-decoration: none;
+  font-size: 50px;
+  width:fit-content;
+  margin-top:55px;
+  font-weight: 800;
+  letter-spacing: 6px;
 }
 
 
@@ -52,11 +85,11 @@ min-height: 5px;
 .modal-wrapper{
   position: fixed;
   top: 50%;
-  left: 80%;
-  width:40%;
-  height:40%;
+  left: 38%;
+  width:25%;
+  height:30%;
   transform: translate(-50%, -50%);
-  background:purple
+  background:pink;
 }
 
 .listing-form{
@@ -76,34 +109,54 @@ input{
 
 
 .listingContainer{
-  background: lightcoral;
-  width:60%;
-  border-style: solid;
-  border-radius: 5px;
-  border-color: black;
+  background: white;
+  width:100%;
+  height: 950px;
+  z-index: 20;
+  border-right-width:1300px;
+  border-right-style: solid;
+  border-right-color: black;
+  border-right-width:1300px;
+ 
 }
+
+.box{
+  position: absolute;
+  width:310px;
+  height: 1000px;
+  background: turquoise;
+  margin-left:1950px;
+  margin-top:-1010px;
+
+}
+.box-2{
+  position: absolute;
+  width:140px;
+  height:1080px;
+  background: rgb(183, 208, 135);
+  margin-left:2120px;
+  margin-top:-1090px;
+
+}
+
 
 .list{
   overflow: hidden;
-  border-radius: 50%;
+  border-radius: 100%;
   position: relative;
-  z-index: 99;
+
   height: 1000px;
   width: 1000px;
-  border: 15px solid #000;
-  left:170px;
+  border: 25px solid #000;
+  left: 720px;
+  margin-top:-60px;
 }
 
-.list iframe{
-  position: absolute;
-  border-radius: 50%;
-  top: 0; left: 0;
-  z-index: 50;
-}
+
 .list-modal{
   position: relative;
   background: orange;
-  z-index: 100;
+
   top: -700px;
   width: 40%;
   right: -800px;

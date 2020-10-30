@@ -26,17 +26,17 @@ class NavContainer extends React.Component{
     render(){
         return(
             <>
-            <nav className="navContainer">
-                <h1 className="logo">Spot-A-Potty</h1>
+        <nav className="navContainer">
+            <h1 className="logo">Spot-A-Potty</h1>
                <ul className="navList">
-               <Link to="/main">Home</Link>
-                   <Link onClick={this.handleClick}>Create Listing</Link>
-                    <Link to="/reservations">Reservations</Link>
-                   <Link to="/account">Account</Link>
-                   <li>Logout</li>
+                   <Link className="li-nav" to="/main">Home</Link>
+                   <Link className="li-nav" onClick={this.handleClick}>Create Listing</Link>
+                    <Link className="li-nav"to="/reservations">Reservations</Link>
+                   <Link className="li-nav"to="/account">Account</Link>
+                   <li className="li-nav">Logout</li>
                </ul>
 
-            </nav>
+        </nav>
         {this.state.openModal ? <Modal currentUser={this.props.currentUser} closeModal={this.closeModal} sendNetToGetListing={this.props.sendNetToGetListing} showModal={this.state.openModal}/> : null}
 </>
         )
