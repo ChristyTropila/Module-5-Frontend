@@ -7,12 +7,10 @@ class Reservations extends React.Component{
     render(){
 
         return(
-          <div>
-             <h1>hellooo</h1>
-            <h1>hellooo</h1>
-            <h1>hellooo</h1>
-            <h1>hellooo</h1>
-
+          <div className="reservations-page">
+           <div className="box"></div>
+           <h1 className="reserv-banner">Reserv</h1>
+           <h1 className="reserv-banner-2">ations</h1>
           </div>
       
         )

@@ -14,6 +14,9 @@ class Modal extends React.Component{
         this.setState({address})
       }
 
+      handleClick=()=>{
+        this.props.closeModal()
+      }
 
     handleSelect=(address)=>{
         geocodeByAddress(address)
@@ -53,12 +56,13 @@ class Modal extends React.Component{
 
       
         return(
-
-    <PlacesAutocomplete  value={this.state.address} onSelect={this.handleSelect} onChange={this.handleInputChange}>
+<div className="modal">
+  <PlacesAutocomplete  value={this.state.address} onSelect={this.handleSelect} onChange={this.handleInputChange}>
   {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
           <div className="modal-wrapper ">
-              <h1>Create Listing</h1>
-              <h2>Enter Your Address</h2>
+            <h3 className="x-exit" onClick={this.handleClick}>X</h3>
+              <h1 className="modal-head">Create Listing</h1>
+              <h2 className="address-title">Enter Your Address</h2>
             <input
               {...getInputProps({
                 placeholder: 'Start Typing ...',
@@ -89,7 +93,11 @@ class Modal extends React.Component{
             </div>
           </div>
         )}
+
             </PlacesAutocomplete>
+          
+
+           </div>
         //  <div className="modal-wrapper"
         //     style={{
         //         opacity: this.props.showModal ? '1' : '0'

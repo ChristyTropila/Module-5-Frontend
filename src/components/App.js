@@ -7,6 +7,7 @@ import LoginRegister from './LoginRegister'
 import {Route, Switch, Link, Redirect} from 'react-router-dom'
 import Reservations from './Reservations'
 import Account from './Account'
+import {TransitionGroup, CSSTransition} from 'react-transition-group'
 
 class App extends React.Component {
 
@@ -73,32 +74,37 @@ sendNetToGetListing=(newListing)=>{
   render(){  
 
     return (
-    <div className="App">
-      <Switch>
-
-      <Route path="/main">
-      <NavContainer currentUser={this.state.currentUser} sendNetToGetListing={this.sendNetToGetListing}/> 
-       <ListingContainer currentUser={this.state.currentUser} changeAvailable={this.sendNetToChangeAvailability} listings={this.state.listings}/> 
-
-      </Route>  
-
-     <Route path="/login">
-      <LoginRegister getUser={this.sendNetToGetUser}/>
-      </Route>
-       
-      <Route path="/reservations">
-      <NavContainer currentUser={this.state.currentUser} sendNetToGetListing={this.sendNetToGetListing}/> 
-       <Reservations/>
-      </Route>
-
-      <Route path="/account">
-      <NavContainer currentUser={this.state.currentUser} sendNetToGetListing={this.sendNetToGetListing}/> 
-        <Account/>
-      </Route>
+  <div className="App">
+        <NavContainer currentUser={this.state.currentUser} 
+      sendNetToGetListing={this.sendNetToGetListing}/> 
+    <TransitionGroup>
+      <CSSTransition
+       classNames={'fade'}
+       timeout={{enter: 1000, exit: 1000}}>
 
 
+ <Switch>
+    <Route path="/main">
+     <ListingContainer currentUser={this.state.currentUser} 
+      changeAvailable={this.sendNetToChangeAvailability} listings={this.state.listings}/> 
+    </Route>  
 
-     </Switch>
+    <Route path="/login">
+     <LoginRegister getUser={this.sendNetToGetUser}/>
+    </Route>
+ 
+    <Route path="/reservations">
+     <Reservations/>
+    </Route>
+
+    <Route path="/account">
+      <Account/>
+    </Route>
+  </Switch>
+
+
+       </CSSTransition>
+      </TransitionGroup>
     </div>
   );
 }
