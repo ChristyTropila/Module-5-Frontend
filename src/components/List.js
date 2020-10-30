@@ -1,5 +1,5 @@
 import React from 'react'
-//import ListModal from './ListModal'
+import ListModal from './ListModal'
 import {Map, GoogleApiWrapper, Marker} from 'google-maps-react'
 import {API_K, LOC_K} from './config_keys'
 import mapStyles from './mapStyles'
@@ -12,7 +12,8 @@ class List extends React.Component{
 
     state={
         displayModal: false,
-        userLocation: {lat: 0, lng: 0}
+        userLocation: {lat: 0, lng: 0},
+        index:''
     }
 
     componentDidMount() {
@@ -26,39 +27,20 @@ class List extends React.Component{
                 }
             })
         })
-        // navigator.geolocation.getCurrentPosition(
-        //   position => {
-        //     const { latitude, longitude } = position.coords;
-          
-        //     this.setState({
-        //       userLocation: { lat: latitude, lng: longitude },
-        //       loading: false
-        //     });
-        //   },
-        //   () => {
-        //     this.setState({ loading: false });
-        //   },
-        //   {
-        //     enableHighAccuracy: true, 
-        //     maximumAge:0, 
-        //     timeout:5000,
-        //   }
-        // );
       }
 
-    handleClickedList=()=>{
+    handleClickedList=(index)=>{
         this.setState({
-            displayModal:true
+            displayModal:true,
+            index: index
         })
     }
 
     closeListModal=()=>{
-        console.log("hello")
         this.setState({
         displayModal:false
      })
 
-     console.log("hello")
     }
     
    
@@ -68,7 +50,7 @@ class List extends React.Component{
            lat: list.lat,
            lng: list.lng
          }}
-         onClick={() => this.handleClickedHouse(index)} />
+         onClick={() => this.handleClickedList(index)} />
          
         })
       }
@@ -76,13 +58,12 @@ class List extends React.Component{
 render(){
   const {lat, lng, available, user, id}=this.props.list
   const {userLocation} = this.state
-//   let hostIcon=require("../images/littleman.png")
- 
-return(
- <> 
-     {this.state.userLocation.lat !== 0 ?
-         <div className="list" 
-          >
+
+    return(
+        <> 
+         {this.state.userLocation.lat !== 0 ?
+             <div className="list" 
+            >
             <Map google={this.props.google}
                 styles={mapStyles.styles}
                 className={'map'}
@@ -101,18 +82,10 @@ return(
                 null}
  
 
-
-      {/* <div onClick={this.handleClickedList} className="list">
-         <li>
-            <h3>List Number: <span>{id}</span></h3>
-         </li>
-
-      </div>
-
          {this.state.displayModal ? <ListModal currentUser={this.props.currentUser}
           closeListModal={this.closeListModal}
            changeAvailable={this.props.changeAvailable} 
-           list={this.props.list}/>: null} */}
+           list={this.props.list[this.state.index]}/>: null}
 
          </>
         )

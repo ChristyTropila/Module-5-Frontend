@@ -35,7 +35,7 @@ class ReserveModal extends React.Component{
     
 
     render(){
-        console.log(this.state.time)
+       console.log(this.props.changeAvailable)
 
  return(
     <div className="reservation-wrapper"

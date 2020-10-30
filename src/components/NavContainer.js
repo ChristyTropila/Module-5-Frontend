@@ -1,5 +1,8 @@
 import React from 'react'
 import Modal from './Modal'
+import Reservations from './Reservations'
+import {Route, Switch, Link, Redirect} from 'react-router-dom'
+
 
 class NavContainer extends React.Component{
 
@@ -26,9 +29,10 @@ class NavContainer extends React.Component{
             <nav className="navContainer">
                 <h1 className="logo">Spot-A-Potty</h1>
                <ul className="navList">
-                   <li onClick={this.handleClick}>Create Listing</li>
-                   <li>Reservations</li>
-                   <li>Account</li>
+               <Link to="/main">Home</Link>
+                   <Link onClick={this.handleClick}>Create Listing</Link>
+                    <Link to="/reservations">Reservations</Link>
+                   <Link to="/account">Account</Link>
                    <li>Logout</li>
                </ul>
 

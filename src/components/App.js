@@ -1,10 +1,12 @@
 
 import '../App.css';
 import React from 'react'
-import NavContainer from './NavContainer.js'
+import NavContainer from './NavContainer'
 import ListingContainer from './ListingContainer'
 import LoginRegister from './LoginRegister'
 import {Route, Switch, Link, Redirect} from 'react-router-dom'
+import Reservations from './Reservations'
+import Account from './Account'
 
 class App extends React.Component {
 
@@ -73,15 +75,28 @@ sendNetToGetListing=(newListing)=>{
     return (
     <div className="App">
       <Switch>
+
       <Route path="/main">
-      <NavContainer currentUser={this.state.currentUser} sendNetToGetListing={this.sendNetToGetListing}/>
-      <ListingContainer currentUser={this.state.currentUser} changeAvailable={this.sendNetToChangeAvailability} listings={this.state.listings}/>
+      <NavContainer currentUser={this.state.currentUser} sendNetToGetListing={this.sendNetToGetListing}/> 
+       <ListingContainer currentUser={this.state.currentUser} changeAvailable={this.sendNetToChangeAvailability} listings={this.state.listings}/> 
 
       </Route>  
 
-     <Route path="/">
+     <Route path="/login">
       <LoginRegister getUser={this.sendNetToGetUser}/>
       </Route>
+       
+      <Route path="/reservations">
+      <NavContainer currentUser={this.state.currentUser} sendNetToGetListing={this.sendNetToGetListing}/> 
+       <Reservations/>
+      </Route>
+
+      <Route path="/account">
+      <NavContainer currentUser={this.state.currentUser} sendNetToGetListing={this.sendNetToGetListing}/> 
+        <Account/>
+      </Route>
+
+
 
      </Switch>
     </div>
