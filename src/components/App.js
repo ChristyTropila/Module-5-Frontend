@@ -60,7 +60,10 @@ sendNetToGetUser=(userObj)=>{
   this.setState({
     currentUser: userObj
   })
+
+ 
 }
+
   
 
 //use arrow function or undefined
@@ -75,16 +78,17 @@ sendNetToGetListing=(newListing)=>{
 
     return (
   <div className="App">
-        <NavContainer currentUser={this.state.currentUser} 
-      sendNetToGetListing={this.sendNetToGetListing}/> 
-    <TransitionGroup>
-      <CSSTransition
-       classNames={'fade'}
-       timeout={{enter: 1000, exit: 1000}}>
+
+        <TransitionGroup>
+          <CSSTransition
+            classNames={'fade'}
+            timeout={{enter: 1000, exit: 1000}}>
 
 
  <Switch>
     <Route path="/main">
+    <NavContainer currentUser={this.state.currentUser} 
+            sendNetToGetListing={this.sendNetToGetListing}/> 
      <ListingContainer currentUser={this.state.currentUser} 
       changeAvailable={this.sendNetToChangeAvailability} listings={this.state.listings}/> 
     </Route>  
@@ -94,11 +98,15 @@ sendNetToGetListing=(newListing)=>{
     </Route>
  
     <Route path="/reservations">
+    <NavContainer currentUser={this.state.currentUser} 
+            sendNetToGetListing={this.sendNetToGetListing}/> 
      <Reservations/>
     </Route>
 
     <Route path="/account">
-      <Account/>
+    <NavContainer currentUser={this.state.currentUser} 
+            sendNetToGetListing={this.sendNetToGetListing}/> 
+    <Account/>
     </Route>
   </Switch>
 

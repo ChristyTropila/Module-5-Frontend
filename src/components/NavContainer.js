@@ -38,7 +38,7 @@ class NavContainer extends React.Component{
 
         </nav>
         {this.state.openModal ? <Modal currentUser={this.props.currentUser} closeModal={this.closeModal} sendNetToGetListing={this.props.sendNetToGetListing} showModal={this.state.openModal}/> : null}
-</>
+            </>
         )
     }
 }
