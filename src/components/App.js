@@ -29,6 +29,7 @@ componentDidMount(){
 
 //When a user reserves a listing, update the available attritute to false
 sendNetToChangeAvailability=(listing)=>{
+  console.log(listing)
   fetch(`http://localhost:5000/listings/${listing.listing_id}`, {
     method: 'PATCH',
     headers: {
@@ -93,6 +94,17 @@ updateUser=(user)=>{
   this.componentDidMount()
 }
 
+updatedUser=(user)=>{
+  fetch(`http://localhost:5000/users/${user}`)
+  .then(res=>res.json())
+  .then((updatedUser)=>{
+    this.setState({
+      currentUser: updatedUser
+    })
+  })
+  this.componentDidMount()
+}
+
   
 
 //use arrow function or undefined
@@ -119,7 +131,7 @@ sendNetToGetListing=(newListing)=>{
 
  <Switch>
     <Route path="/main">
-    <NavContainer currentUser={this.state.currentUser} 
+    <NavContainer  updateUser={this.updatedUser} currentUser={this.state.currentUser} 
             sendNetToGetListing={this.sendNetToGetListing}/> 
      <ListingContainer updateUser={this.updateUser} currentUser={this.state.currentUser} 
       changeAvailable={this.sendNetToChangeAvailability} listings={this.state.listings}/> 
@@ -138,7 +150,7 @@ sendNetToGetListing=(newListing)=>{
     <Route path="/account">
     <NavContainer currentUser={this.state.currentUser} 
             sendNetToGetListing={this.sendNetToGetListing}/> 
-    <Account/>
+    <Account changeAvailable={this.sendNetToChangeAvailability} updateUser={this.updatedUser} currentUser={this.state.currentUser}/>
     </Route>
   </Switch>
 

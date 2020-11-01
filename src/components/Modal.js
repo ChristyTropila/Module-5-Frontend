@@ -43,9 +43,12 @@ class Modal extends React.Component{
             })
             .then(res=>res.json())
             .then((newListing)=>{
+              debugger
                 console.log(newListing)
+                console.log(newListing.user_id)
                 this.props.sendNetToGetListing(newListing)
                 this.props.closeModal()
+                this.props.updateUser(newListing.user_id)
             })
           
         })
@@ -54,7 +57,7 @@ class Modal extends React.Component{
 
     render(){
 
-      
+      // console.log(this.props.updateUser)
         return(
 <div className="modal">
   <PlacesAutocomplete  value={this.state.address} onSelect={this.handleSelect} onChange={this.handleInputChange}>
