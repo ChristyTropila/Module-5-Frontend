@@ -84,6 +84,7 @@ render(){
 
          {this.state.displayModal ? <ListModal currentUser={this.props.currentUser}
           closeListModal={this.closeListModal}
+          updateUser={this.props.updateUser}
            changeAvailable={this.props.changeAvailable} 
            list={this.props.list[this.state.index]}/>: null}
 

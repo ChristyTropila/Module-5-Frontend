@@ -46,7 +46,7 @@ class ListModal extends React.Component{
             </div>
               <h3 className="x-exit-list" onClick={this.hideListModal}>X</h3>
 
-              {this.state.showModal ? <ReserveModal currentUser={this.props.currentUser} closeListModal={this.props.closeListModal} closeModal={this.closeModal} changeAvailable={this.props.changeAvailable} showModal={this.state.showModal} list={this.props.list} />: null}
+              {this.state.showModal ? <ReserveModal updateUser={this.props.updateUser} currentUser={this.props.currentUser} closeListModal={this.props.closeListModal} closeModal={this.closeModal} changeAvailable={this.props.changeAvailable} showModal={this.state.showModal} list={this.props.list} />: null}
             </div>
             
         )

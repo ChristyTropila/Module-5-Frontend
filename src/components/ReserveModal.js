@@ -31,6 +31,7 @@ class ReserveModal extends React.Component{
         this.props.changeAvailable(newReserve)
         this.props.closeModal()
         this.props.closeListModal()
+        this.props.updateUser(newReserve)
     })
 }
     

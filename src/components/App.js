@@ -55,13 +55,36 @@ sendNetToChangeAvailability=(listing)=>{
       })
     }
 
+updateUserState=(user)=>{
+  this.setState({
+    currentUser: user
+  })
+ this.componentDidMount()
+}
+
+
+
+
+updatedListing=(listing)=>{
+  console.log(listing)
+}
+
 
 sendNetToGetUser=(userObj)=>{
   this.setState({
     currentUser: userObj
   })
-
  
+}
+
+updateUser=(user)=>{
+  fetch(`http://localhost:5000/users/${user.user_id}`)
+  .then(res=>res.json())
+  .then((updatedUser)=>{
+    this.setState({
+      currentUser: updatedUser
+    })
+  })
 }
 
   
@@ -92,7 +115,7 @@ sendNetToGetListing=(newListing)=>{
     <Route path="/main">
     <NavContainer currentUser={this.state.currentUser} 
             sendNetToGetListing={this.sendNetToGetListing}/> 
-     <ListingContainer currentUser={this.state.currentUser} 
+     <ListingContainer updateUser={this.updateUser} currentUser={this.state.currentUser} 
       changeAvailable={this.sendNetToChangeAvailability} listings={this.state.listings}/> 
     </Route>  
 
@@ -103,7 +126,7 @@ sendNetToGetListing=(newListing)=>{
     <Route path="/reservations">
     <NavContainer currentUser={this.state.currentUser} 
             sendNetToGetListing={this.sendNetToGetListing}/> 
-     <Reservations currentUser={this.state.currentUser}/>
+     <Reservations updateUserState={this.updateUserState} currentUser={this.state.currentUser}/>
     </Route>
 
     <Route path="/account">

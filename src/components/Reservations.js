@@ -24,12 +24,10 @@ class Reservations extends React.Component{
       method: 'DELETE',
   })
   .then(res=>res.json())
-  .then((deletedResv)=>{
-    console.log(deletedResv)
-  })
-
-}
-
+  .then((updatedUser)=>{
+    this.props.updateUserState(updatedUser)
+    })
+  }
 
  userReservations=this.props.currentUser.reservations.map((resv, index)=>{
     return<div className="reserv-cards">
