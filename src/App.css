@@ -78,7 +78,7 @@ transition: al 1.3s;
   z-index: 1;
   background:#4fb3a9;
   width:25%;
-  height:20%;
+  height:30%;
   left:900px;
   top:400px;
   transform: translate(-50%, -80%) scale (1.5);
@@ -86,7 +86,7 @@ transition: al 1.3s;
   border-radius: 10px;
   box-shadow: 5px 10px 10px #000000;
   word-spacing: 1px;
-  padding:5px 5px;
+  padding:30px 10px;
 }
 
 
@@ -109,7 +109,7 @@ transition: al 1.3s;
 
 .address-title{
  margin-left:12px;
- margin-top:10px;
+ margin-top:35px;
 }
 
 .location-search-input{
@@ -148,7 +148,6 @@ input{
 }
 
 .list{
- 
   overflow: hidden;
   border-radius: 100%;
   position: relative;
@@ -160,10 +159,11 @@ input{
   margin-top:-95px;
 }
 
+
 .reservations-page{
   background: white;
   width:100%;
-  height: 1021px;
+  height: 135px;
   margin-top:-90px;
   z-index: -3;
   border-right-width:1300px;
@@ -180,6 +180,7 @@ input{
   right:0;
   margin-right:1053px;
   letter-spacing: 3px;
+  margin-top:20px;
 }
 
 .reserv-banner-2{
@@ -189,15 +190,80 @@ input{
   right:0;
   margin-right:749px;
   letter-spacing: 3px;
+  margin-top:20px;
 }
+
+.reserv-cards{
+  position:relative;
+  color:white;
+  margin-right:1053px;
+  letter-spacing: 3px;
+  width:530px;
+  left:1215px;
+  top:135px;
+}
+
+.row{
+  float: left;
+  width: 65%;
+  padding: 0 10px;
+ 
+}
+
+.card{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+  background: white;
+  color:black;
+  border-style:solid;
+  border-color:black;
+  border-width:2px;
+  height:250px;
+
+}
+
+.card:hover{
+  transform: scale(1.2)
+}
+
+.index-text{
+ margin-left:10px;
+ font-size: 40px;
+ margin-bottom:20px;
+}
+
+.date-text{
+  margin-left:25px;
+  margin-bottom:40px;
+ 
+}
+
+.time-text{
+  margin-left:25px;
+  margin-bottom:10px;
+}
+
+.checkbox{
+  margin-top:20px;
+  width:10%;
+  float:left;
+  margin-left:25px;
+}
+.checkbox-label{
+
+  font-size: 20px;
+  float:left;
+  margin-top:40px;
+  margin-left:15px;
+}
+
 .box{
   z-index: 20;
   background: black;
   width:400px;
   height:1021px;
   float:right;
-
 }
+
 .box-2{
   position: absolute;
   width:140px;
@@ -210,20 +276,81 @@ input{
 
 
 .list-modal{
-  position: relative;
-  background: orange;
-  top: -700px;
-  width: 40%;
-  right: -800px;
-  float:right;
   list-style: none;
+  transition: opacity 9s ease-in;
+  position: fixed;
+  z-index: 1;
+  background: orange;
+  width:25%;
+  height:auto;
+  left:920px;
+  top:400px;
+  transform: translate(-50%, -80%) scale (1.5);
+  transition-delay: 2s;
+  border-radius: 10px;
+  box-shadow: 5px 10px 10px #000000;
+  word-spacing: 1px;
+  padding:30px 10px;
 }
 
-.login-register{
-  background:yellow;
+.list-modal-li{
+  font-size: 35px;
+  margin-left:10px;
+  margin-top:5px;
+}
+
+.title-list{
+ font-size:30px;
+ margin-bottom:15px;
+
+}
+.list-modal-btn{
+  width: 100px;
+  height: 50px;
+  font-size:20px;
+  font-weight: 800;
+  margin-left:10px;
+  margin-top:20px;
+
+}
+.x-exit-list{
+  width:40px;
+  height:40px;
+  font-size: 40px;
+  font-weight: 950;
+  float:right;
+  cursor: pointer;
+  margin-top:-150px;
+  margin-right:-10px;
+}
+
+.reserve-btn{
+  float:left;
+  height:50px;
+  font-size:25px;
+  font-weight: 800;
+  margin-left:5px;
+  margin-top:30px;
   width: 50%;
 }
 
+.list-button{
+  float:left;
+  height:50px;
+  font-size:25px;
+  font-weight: 800;
+  margin-top:30px;
+  width: 50%;
+}
+
+.reserve-input{
+  width:50%;
+}
+
+.reservation-wrapper{
+  padding:30px 10px;
+  margin-top:100px;
+}
 .create-account-form{
   width: 40%;
 }
@@ -238,15 +365,7 @@ input{
   height: 50px;
 }
 
-.list-modal-btn{
-  width: 100px;
-  height: 50px;
-}
 
-.reserve-btn{
-  width:100px;
-  height:50px;
-}
 
 .account-container{
   height: 500px;

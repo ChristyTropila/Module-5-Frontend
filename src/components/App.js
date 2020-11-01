@@ -76,7 +76,10 @@ sendNetToGetListing=(newListing)=>{
 
   render(){  
 
+   console.log(this.state.currentUser)
+
     return (
+
   <div className="App">
 
         <TransitionGroup>
@@ -100,7 +103,7 @@ sendNetToGetListing=(newListing)=>{
     <Route path="/reservations">
     <NavContainer currentUser={this.state.currentUser} 
             sendNetToGetListing={this.sendNetToGetListing}/> 
-     <Reservations/>
+     <Reservations currentUser={this.state.currentUser}/>
     </Route>
 
     <Route path="/account">

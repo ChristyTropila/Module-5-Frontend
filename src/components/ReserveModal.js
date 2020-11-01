@@ -13,6 +13,7 @@ class ReserveModal extends React.Component{
     }
 
     handleSubmit=(evt)=>{
+   console.log(this.props.currentUser)
         evt.preventDefault()
         fetch('http://localhost:5000/reservations', {
             method: 'POST',
@@ -36,22 +37,22 @@ class ReserveModal extends React.Component{
 
     render(){
        console.log(this.props.changeAvailable)
+       console.log(this.props.currentUser)
 
  return(
-    <div className="reservation-wrapper"
+<div className="reservation-wrapper"
         style={{
             opacity: this.props.showModal ? '1' : '0'}}
         >
-        <form className="reservation-form" onSubmit={this.handleSubmit}>
-        <div className="reserve-form">
-        <h4>Make Reservation</h4>
-        
-       <input type="time" name="time" value={this.state.time} onChange={this.handleChange} required/>
-        </div>
+  <form className="reservation-form" onSubmit={this.handleSubmit}>
+     <div className="reserve-form">
+       <input className="reserve-input" type="time" name="time" value={this.state.time} onChange={this.handleChange} required/>
+     </div>
+
         <button className="list-button" type="submit">
             Create 
         </button>
-    </form>
+  </form>
 
 </div>
         )

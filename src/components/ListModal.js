@@ -36,15 +36,15 @@ class ListModal extends React.Component{
         
             <div className="list-modal">
             
-            <li>
-                <h3>Availability: <span>{available ? "Open": "Not Available"}</span></h3>
-                <h4>Host: <span>{user.name}</span></h4>
-                <h4>Contact: <span>{user.contact}</span></h4>
+            <li className="list-modal-li">
+                <h3><span className="title-list">Status:</span> <span>{available ? "Open": "Not Available"}</span></h3>
+                <h4><span className="title-list">Host:</span> <span>{user.name}</span></h4>
+                <h4><span className="title-list">Contact:</span> <span>{user.contact}</span></h4>
             </li>
             <div className="modal-nav">
              {available === true ? <button className="reserve-btn" onClick={this.handleReserveClick}>Reserve</button> : null}
             </div>
-              <button className="list-modal-btn" onClick={this.hideListModal}>Back</button>
+              <h3 className="x-exit-list" onClick={this.hideListModal}>X</h3>
 
               {this.state.showModal ? <ReserveModal currentUser={this.props.currentUser} closeListModal={this.props.closeListModal} closeModal={this.closeModal} changeAvailable={this.props.changeAvailable} showModal={this.state.showModal} list={this.props.list} />: null}
             </div>
