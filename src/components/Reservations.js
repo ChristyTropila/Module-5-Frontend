@@ -3,59 +3,54 @@ import { mockComponent } from 'react-dom/test-utils'
 
 class Reservations extends React.Component{
 
-  state={
-    reservation:[]
-  }
+  // state={
+  //   reservation:[]
+  // }
 
-  handleClick=(index)=>{
-   this.setState({
-     reservation:this.props.currentUser.reservations[index.target.id]
-   })
+  // componentDidMount(){
+  //   this.setState({
+  //     reservation: this.props.currentUser.reservations
+  //   })
+  // }
 
-   setTimeout(() => {
-     this.makeFetchRequest()
-   }, 1000);
-  }
-
-  makeFetchRequest=()=>{
-    console.log(this.state.reservation)
-
-    fetch(`http://localhost:5000/reservations/${this.state.reservation.id}`,{
+  handleClick=(evt)=>{
+    debugger;
+    fetch(`http://localhost:5000/reservations/${evt.target.id}`,{
       method: 'DELETE',
   })
   .then(res=>res.json())
-  .then((updatedUser)=>{
-    this.props.updateUserState(updatedUser)
+  .then((reservation)=>{
+    console.log(reservation)
+    this.props.updateUserState(reservation)
     })
+
   }
 
- userReservations=this.props.currentUser.reservations.map((resv, index)=>{
-    return<div className="reserv-cards">
-      <div className="row">
-       <div className="card">
-         <h1 className="index-text">{index + 1.}</h1>
-         <h2 className="date-text">{new Date(resv.booking_time).toDateString()}</h2>
-         <h2 className="time-text">{new Date(resv.booking_time).toLocaleTimeString()}</h2>
-        <form  onClick={this.handleClick}>
-         <input className="checkbox" type="checkbox" id={index} name="completed" value="completed"/>
-         <label className="checkbox-label" for="completed"> Finished?</label> 
-     </form>
-     </div>
-     </div>
-    </div>
+    render(){
+      console.log(this.props.currentUser)
+      console.log(this.props.currentUser.reservations)
+    
+ let userReservations=this.props.currentUser.reservations.map((resv, index)=>{
+  return<div className="reserv-cards">
+    <div className="row">
+     <div key={resv.id} className="card">
+       <h1 className="index-text">{index + 1.}</h1>
+       <h2 className="date-text">{new Date(resv.booking_time).toDateString()}</h2>
+       <h2 className="time-text">{new Date(resv.booking_time).toLocaleTimeString()}</h2>
+       <input onClick={this.handleClick}className="checkbox" type="checkbox" id={resv.id} name="completed" value="completed"/>
+       <label className="checkbox-label" for="completed"> Finished?</label> 
+   </div>
+   </div>
+  </div>
 })
 
-    render(){
-
-      console.log(this.state.reservationList)
-    
      return(
         <div className="reservation-comp">
           <div className="reservations-page">
            <div className="box"></div>
            <h1 className="reserv-banner">Reserv</h1>
            <h1 className="reserv-banner-2">ations</h1>
-           {this.userReservations}
+           {userReservations}
           </div>
           </div>
       

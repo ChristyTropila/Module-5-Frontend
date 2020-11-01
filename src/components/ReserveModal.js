@@ -12,7 +12,7 @@ class ReserveModal extends React.Component{
           })
     }
 
-    handleSubmit=(evt)=>{
+ handleSubmit=(evt)=>{
    console.log(this.props.currentUser)
         evt.preventDefault()
         fetch('http://localhost:5000/reservations', {

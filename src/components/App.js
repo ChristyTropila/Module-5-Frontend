@@ -13,7 +13,8 @@ class App extends React.Component {
 
 state={
   listings: [],
-  currentUser: []
+  currentUser: [],
+  reservations:[]
 }
 
 componentDidMount(){
@@ -55,12 +56,16 @@ sendNetToChangeAvailability=(listing)=>{
       })
     }
 
-updateUserState=(user)=>{
-  this.setState({
-    currentUser: user
-  })
- this.componentDidMount()
-}
+// updateUserState=(user)=>{
+//  let copyOfUser=[this.state.currentUser]
+//  if(copyOfUser.id===user.user_id){
+//    this.setState({
+     
+//    })
+//  }
+ 
+// // this.componentDidMount()
+// }
 
 
 
@@ -85,6 +90,7 @@ updateUser=(user)=>{
       currentUser: updatedUser
     })
   })
+  this.componentDidMount()
 }
 
   
@@ -126,7 +132,7 @@ sendNetToGetListing=(newListing)=>{
     <Route path="/reservations">
     <NavContainer currentUser={this.state.currentUser} 
             sendNetToGetListing={this.sendNetToGetListing}/> 
-     <Reservations updateUserState={this.updateUserState} currentUser={this.state.currentUser}/>
+     <Reservations updateUserState={this.updateUser} currentUser={this.state.currentUser}/>
     </Route>
 
     <Route path="/account">
