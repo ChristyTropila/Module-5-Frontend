@@ -16,6 +16,7 @@ class List extends React.Component{
         index:''
     }
 
+    //gets position of currentuser and places vector on map
     componentDidMount() {
         fetch(`https://geolocation-db.com/json/${LOC_K}`)
         .then(res=>res.json())

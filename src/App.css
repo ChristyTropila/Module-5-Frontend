@@ -271,11 +271,23 @@ padding:20px 20px;
   padding:20px 20px;
 }
 .account-div{
-  background:green;
+ background:white;
   position: relative;
   color:black;
   font-size:30px;
   padding:20px 20px;
+}
+
+.list-delete{
+  width:100px;
+  height:50px;
+  font-size: 20px;
+}
+
+.list-update{
+  width:100px;
+  height:50px;
+  font-size:20px;
 }
 
 .box{

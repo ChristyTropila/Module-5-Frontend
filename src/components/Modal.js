@@ -34,16 +34,14 @@ class Modal extends React.Component{
                     "Content-Type": 'Application/json'
                 },
                 body: JSON.stringify({
-                   // address: this.state.address,
                    lat: this.state.lat,
                    lng: this.state.lng,
-                    user_id: this.props.currentUser.id,
-                    available: true
+                   user_id: this.props.currentUser.id,
+                   available: true
                 })
             })
             .then(res=>res.json())
             .then((newListing)=>{
-              debugger
                 console.log(newListing)
                 console.log(newListing.user_id)
                 this.props.sendNetToGetListing(newListing)
@@ -56,6 +54,7 @@ class Modal extends React.Component{
 
 
     render(){
+      console.log(this.props.currentUser)
 
       // console.log(this.props.updateUser)
         return(

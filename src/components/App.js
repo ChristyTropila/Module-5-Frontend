@@ -71,9 +71,9 @@ sendNetToChangeAvailability=(listing)=>{
 
 
 
-updatedListing=(listing)=>{
-  console.log(listing)
-}
+// updatedListing=(listing)=>{
+//   console.log(listing)
+// }
 
 
 sendNetToGetUser=(userObj)=>{
@@ -115,9 +115,12 @@ sendNetToGetListing=(newListing)=>{
  })
 }
 
+  getListingsOfUser
+
   render(){  
 
    console.log(this.state.currentUser)
+   console.log(this.state.listings)
 
     return (
 
@@ -130,11 +133,15 @@ sendNetToGetListing=(newListing)=>{
 
 
  <Switch>
+
+   
     <Route path="/main">
+    {this.state.currentUser.length===0 ? <Redirect to="/login"/> :
     <NavContainer  updateUser={this.updatedUser} currentUser={this.state.currentUser} 
-            sendNetToGetListing={this.sendNetToGetListing}/> 
+    sendNetToGetListing={this.sendNetToGetListing}/> }
+     {this.state.currentUser.length===0 ? <Redirect to="/login"/> :
      <ListingContainer updateUser={this.updateUser} currentUser={this.state.currentUser} 
-      changeAvailable={this.sendNetToChangeAvailability} listings={this.state.listings}/> 
+    changeAvailable={this.sendNetToChangeAvailability} listings={this.state.listings}/> }
     </Route>  
 
     <Route path="/login">
