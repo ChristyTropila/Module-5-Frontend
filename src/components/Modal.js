@@ -100,23 +100,6 @@ render(){
           
 
            </div>
-        //  <div className="modal-wrapper"
-        //     style={{
-        //         opacity: this.props.showModal ? '1' : '0'
-        //     }}
-        //     >
-        //         <form className="listing-form" onSubmit={this.handleSubmit}>
-        //         <div className="list-form">
-        //             <h4>Create A Listing</h4>
-
-        //             <input type="text" name="address" value={this.state.address} onChange={this.handleInputChange} placeholder="Address"/>
-        //             </div>
-        //             <button className="list-button" type="submit">
-        //                 Create 
-        //             </button>
-        //         </form>
-
-        //     </div>
         )
 
     }

@@ -34,7 +34,7 @@ class ListModal extends React.Component{
 
         let reviewList=this.props.list.reviews.map((review)=>{
                 return<h5 className="title-list-2" key={review.id}>
-                    {review.review_text}
+                    "{review.review_text}"
                 </h5>
             })
                        
@@ -46,7 +46,7 @@ class ListModal extends React.Component{
       <h3 className="x-exit-list" onClick={this.hideListModal}>X</h3>
         <h3 className="title-list">Status: {available ? "Open": "Not Available"}</h3>
         <h3 className="title-list">Host: {user.name}</h3>
-       {this.props.list.reviews.length > 0 ? <h4><span className="title-list">Reviews:</span><div className="reviewList">{reviewList} </div> </h4> : <h4><span className="title-list">Reviews:</span><div className="reviewList"><h4 className="title-list-2" >No Reviews For This Listing </h4></div> </h4> }
+         {this.props.list.reviews.length > 0 ? <h4><span className="title-list">Reviews:</span><div className="reviewList">{reviewList} </div> </h4> : <h4><span className="title-list">Reviews:</span><div className="reviewList"><h4 className="title-list-2" >No Reviews For This Listing </h4></div> </h4> }
             </li>
             <div className="modal-nav">
              {available === true ? <button className="reserve-btn" onClick={this.handleReserveClick}>Reserve</button> : null}
