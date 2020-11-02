@@ -57,31 +57,27 @@ sendNetToChangeAvailability=(listing)=>{
       })
     }
 
-// updateUserState=(user)=>{
-//  let copyOfUser=[this.state.currentUser]
-//  if(copyOfUser.id===user.user_id){
-//    this.setState({
-     
-//    })
-//  }
- 
-// // this.componentDidMount()
-// }
+    sendNetToUpdateListing=(listing)=>{
+      console.log(listing)
+      console.log("helllooo")
+      let elementIndex=this.state.listings.findIndex(element=>
+        element.id ===listing.id
+        )
+
+      let copyOfState=[...this.state.listings]
+      copyOfState[elementIndex]=listing
+       this.setState({
+         listings: copyOfState
+       })
+      }
 
 
-
-
-// updatedListing=(listing)=>{
-//   console.log(listing)
-// }
-
-
-sendNetToGetUser=(userObj)=>{
-  this.setState({
-    currentUser: userObj
-  })
- 
-}
+    sendNetToGetUser=(userObj)=>{
+      this.setState({
+        currentUser: userObj
+      })
+    
+    }
 
 updateUser=(user)=>{
   fetch(`http://localhost:5000/users/${user.user_id}`)
@@ -105,8 +101,6 @@ updatedUser=(user)=>{
   this.componentDidMount()
 }
 
-  
-
 //use arrow function or undefined
 sendNetToGetListing=(newListing)=>{
  let copyOfListings=[...this.state.listings, newListing]
@@ -117,13 +111,10 @@ sendNetToGetListing=(newListing)=>{
 
   getListingsOfUser
 
-  render(){  
+render(){  
 
-   console.log(this.state.currentUser)
-   console.log(this.state.listings)
 
-    return (
-
+ return (
   <div className="App">
 
         <TransitionGroup>
@@ -151,7 +142,7 @@ sendNetToGetListing=(newListing)=>{
     <Route path="/reservations">
     <NavContainer currentUser={this.state.currentUser} 
             sendNetToGetListing={this.sendNetToGetListing}/> 
-     <Reservations updateUserState={this.updateUser} currentUser={this.state.currentUser}/>
+     <Reservations updateListing={this.sendNetToUpdateListing} updateUserState={this.updateUser} currentUser={this.state.currentUser}/>
     </Route>
 
     <Route path="/account">

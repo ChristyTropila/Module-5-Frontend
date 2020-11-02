@@ -3,18 +3,43 @@ import { mockComponent } from 'react-dom/test-utils'
 
 class Reservations extends React.Component{
 
-  // state={
-  //   reservation:[]
-  // }
+  state={
+    review:"",
+    showTextBox: true
+  }
 
-  // componentDidMount(){
-  //   this.setState({
-  //     reservation: this.props.currentUser.reservations
-  //   })
-  // }
+   handleInputChange=(evt)=>{
+    console.log(evt.target.value)
+    this.setState({
+      [evt.target.name]: evt.target.value
+    })
+   }
+
+   handleReviewSubmit=(evt)=>{
+     evt.preventDefault()
+     this.setState({
+       showTextBox: false
+     })
+     fetch('http://localhost:5000/reviews',{
+       method: 'POST',
+       headers: {
+        "Content-Type": 'Application/json'
+    },
+    body: JSON.stringify({
+      listing_id: evt.target.id,
+      user_id: this.props.currentUser.id,
+      textarea: this.state.review,
+      rating:5
+     })
+    })
+    .then(res=>res.json())
+    .then((review)=>{
+      this.props.updateListing(review)
+    })
+   }
+
 
   handleClick=(evt)=>{
-    debugger;
     fetch(`http://localhost:5000/reservations/${evt.target.id}`,{
       method: 'DELETE',
   })
@@ -27,18 +52,21 @@ class Reservations extends React.Component{
   }
 
     render(){
-      console.log(this.props.currentUser)
-      console.log(this.props.currentUser.reservations)
+
     
  let userReservations=this.props.currentUser.reservations.map((resv, index)=>{
+   console.log(this.props.currentUser.reservations)
   return<div className="reserv-cards">
     <div className="row">
      <div key={resv.id} className="card">
        <h1 className="index-text">{index + 1.}</h1>
        <h2 className="date-text">{new Date(resv.booking_time).toDateString()}</h2>
        <h2 className="time-text">{new Date(resv.booking_time).toLocaleTimeString()}</h2>
+       <textarea ref={index} className={this.state.showTextBox ? "review-box" : "review-hide"} type="text" name="review" value={this.state.index} onChange={this.handleInputChange} placeholder="Leave a Review!" />
+       <button id={resv.listing_id} onClick={this.handleReviewSubmit} type="submit" className={this.state.showTextBox ? "review-btn" : "rvw-btn-hide"}>Submit</button>
        <input onClick={this.handleClick}className="checkbox" type="checkbox" id={resv.id} name="completed" value="completed"/>
-       <label className="checkbox-label" for="completed"> Finished?</label> 
+       <label className="checkbox-label" for="completed"> CLOSE RESERVATION</label> 
+
    </div>
    </div>
   </div>
