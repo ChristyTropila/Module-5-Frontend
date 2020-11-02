@@ -14,7 +14,8 @@ class App extends React.Component {
 state={
   listings: [],
   currentUser: [],
-  reservations:[]
+  reservations:[],
+  changeRedirect: false
 }
 
 componentDidMount(){
@@ -70,7 +71,12 @@ sendNetToChangeAvailability=(listing)=>{
          listings: copyOfState
        })
       }
-
+ 
+   changeRedirect=()=>{
+        this.setState({
+          changeRedirect: true
+        })
+      }
 
     sendNetToGetUser=(userObj)=>{
       this.setState({
@@ -113,7 +119,6 @@ sendNetToGetListing=(newListing)=>{
 
 render(){  
 
-
  return (
   <div className="App">
 
@@ -124,11 +129,9 @@ render(){
 
 
  <Switch>
-
-   
     <Route path="/main">
     {this.state.currentUser.length===0 ? <Redirect to="/login"/> :
-    <NavContainer  updateUser={this.updatedUser} currentUser={this.state.currentUser} 
+    <NavContainer changeRedirect={this.changeRedirect} updateUser={this.updatedUser} currentUser={this.state.currentUser} 
     sendNetToGetListing={this.sendNetToGetListing}/> }
      {this.state.currentUser.length===0 ? <Redirect to="/login"/> :
      <ListingContainer updateUser={this.updateUser} currentUser={this.state.currentUser} 

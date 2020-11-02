@@ -3,7 +3,7 @@ import List from './List'
 
 function ListingContainer(props){
 
-       return(
+return(
      <div className="listingContainer">
         <List
         list={props.listings}
@@ -11,7 +11,6 @@ function ListingContainer(props){
         currentUser={props.currentUser}
         updateUser={props.updateUser}
         />
-
            </div>
        )
 

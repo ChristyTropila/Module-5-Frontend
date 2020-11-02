@@ -47,20 +47,20 @@ class Modal extends React.Component{
                 this.props.sendNetToGetListing(newListing)
                 this.props.closeModal()
                 this.props.updateUser(newListing.user_id)
+                this.props.changeRedirect()
             })
           
         })
       }
 
 
-    render(){
-      console.log(this.props.currentUser)
+render(){
 
-      // console.log(this.props.updateUser)
-        return(
-<div className="modal">
-  <PlacesAutocomplete  value={this.state.address} onSelect={this.handleSelect} onChange={this.handleInputChange}>
-  {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+     
+  return(
+    <div className="modal">
+      <PlacesAutocomplete  value={this.state.address} onSelect={this.handleSelect} onChange={this.handleInputChange}>
+      {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
           <div className="modal-wrapper ">
             <h3 className="x-exit" onClick={this.handleClick}>X</h3>
               <h1 className="modal-head">Create Listing</h1>

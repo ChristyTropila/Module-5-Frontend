@@ -38,7 +38,7 @@ class NavContainer extends React.Component{
                </ul>
 
         </nav>
-        {this.state.openModal ? <Modal updateUser={this.props.updateUser} currentUser={this.props.currentUser} closeModal={this.closeModal} sendNetToGetListing={this.props.sendNetToGetListing} showModal={this.state.openModal}/> : null}
+        {this.state.openModal ? <Modal changeRedirect={this.props.changeRedirect} updateUser={this.props.updateUser} currentUser={this.props.currentUser} closeModal={this.closeModal} sendNetToGetListing={this.props.sendNetToGetListing} showModal={this.state.openModal}/> : null}
             </>
         )
     }

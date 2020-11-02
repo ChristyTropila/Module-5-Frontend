@@ -43,7 +43,6 @@ class List extends React.Component{
      })
 
     }
-    
    
     displayMarkers = () => {
         return this.props.list.map((list, index) => {

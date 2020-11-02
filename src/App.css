@@ -84,7 +84,7 @@ transition: al 1.3s;
   transform: translate(-50%, -80%) scale (1.5);
   transition-delay: 2s;
   border-radius: 10px;
-  box-shadow: 5px 10px 10px #000000;
+  box-shadow: 15px 15px 10px #000000;
   word-spacing: 1px;
   padding:30px 10px;
 }
@@ -306,14 +306,30 @@ input{
   display:none;
 }
 
+.reviewList{
+  margin-top:15px;
+  height:200px;
+  overflow: scroll;
+  font-size:40px;
+  list-style-type: square;
+  border-style: solid;
+  border-color:black;
+  border-width:3px;
+  border-radius:5px;
+  background:rgb(255, 255, 255);
+  color:black;
+  letter-spacing: 2px;
+
+}
+
 
 .account-container{
-float:right;
-margin-right:100px;
-background:red;
-width:60%;
-height:auto;
-padding:20px 20px;
+  float:right;
+  margin-right:100px;
+  width:60%;
+  height:auto;
+  padding:20px 20px;
+  background:red;
 }
 
 .act-header{
@@ -341,6 +357,14 @@ padding:20px 20px;
   font-size:20px;
 }
 
+.list-item{
+ margin-left:15px;
+  font-size: 35px;
+   color:black;
+
+
+}
+
 .box{
   z-index: 20;
   background: black;
@@ -358,6 +382,9 @@ padding:20px 20px;
   margin-top:-1090px;
 
 }
+::-webkit-scrollbar {
+  display: none;
+}
 
 
 .list-modal{
@@ -365,15 +392,15 @@ padding:20px 20px;
   transition: opacity 9s ease-in;
   position: fixed;
   z-index: 1;
-  background: orange;
+  background: #4fb3a9;
   width:25%;
   height:auto;
-  left:920px;
-  top:400px;
+  left:910px;
+  top:240px;
   transform: translate(-50%, -80%) scale (1.5);
   transition-delay: 2s;
   border-radius: 10px;
-  box-shadow: 5px 10px 10px #000000;
+  box-shadow: 15px 15px 10px #000000;
   word-spacing: 1px;
   padding:30px 10px;
 }
@@ -381,14 +408,25 @@ padding:20px 20px;
 .list-modal-li{
   font-size: 35px;
   margin-left:10px;
-  margin-top:5px;
+  float:left;
 }
 
 .title-list{
  font-size:30px;
+ font-weight: 800;
+ margin-top:20px;
  margin-bottom:15px;
 
 }
+
+.title-list-2{
+
+  margin-top:35px;
+  font-size:25px;
+  padding:5px;
+  font-weight: 300;
+}
+
 .list-modal-btn{
   width: 100px;
   height: 50px;
@@ -405,32 +443,37 @@ padding:20px 20px;
   font-weight: 950;
   float:right;
   cursor: pointer;
-  margin-top:-150px;
+  margin-top:-30px;
   margin-right:-10px;
 }
 
 .reserve-btn{
-  float:left;
+  float:right;
+  height:50px;
+  font-size:25px;
+  font-weight: 800;
+  margin-right:10px;
+  margin-top:30px;
+  width: 49%;
+}
+
+.list-button{
+  float:right;
   height:50px;
   font-size:25px;
   font-weight: 800;
   margin-left:5px;
-  margin-top:30px;
-  width: 50%;
-}
-
-.list-button{
-  float:left;
-  height:50px;
-  font-size:25px;
-  font-weight: 800;
-  margin-top:30px;
+  margin-top:10px;
   width: 50%;
 }
 
 .reserve-input{
   width:50%;
+  margin-top:50px;
+  float:left;
+  margin-left:270px;
 }
+
 
 .reservation-wrapper{
   padding:30px 10px;
