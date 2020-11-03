@@ -19,6 +19,7 @@ class Modal extends React.Component{
       }
 
     handleSelect=(address)=>{
+      console.log(this.props.currentUser.user)
         geocodeByAddress(address)
         .then(results => getLatLng(results[0]))
         .then(({lat, lng})=>{
@@ -43,11 +44,8 @@ class Modal extends React.Component{
             })
             .then(res=>res.json())
             .then((newListing)=>{
-                console.log(newListing)
-                console.log(newListing.user_id)
-                console.log(this.props.updateUser)
+             
                 this.props.updateUser(newListing.user_id)
-
                 this.props.sendNetToGetListing(newListing)
                 this.props.closeModal()
                  this.props.changeRedirect()
@@ -58,7 +56,7 @@ class Modal extends React.Component{
 
 
 render(){
-
+  console.log(this.props.currentUser)
      
   return(
     <div className="modal">

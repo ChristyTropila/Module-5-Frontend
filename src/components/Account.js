@@ -33,7 +33,7 @@ class Account extends React.Component{
          }else{
         console.log(updatedListing)
         this.props.changeAvailable(updatedListing)
-     this.props.updateUser(updatedListing.user_id)
+        this.props.updateUser(updatedListing.user_id)
     }
     })
 

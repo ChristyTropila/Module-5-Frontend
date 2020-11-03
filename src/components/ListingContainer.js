@@ -11,7 +11,7 @@ return(
         currentUser={props.currentUser}
         updateUser={props.updateUser}
         />
-           </div>
+         </div>
        )
 
 }

@@ -14,7 +14,8 @@ class App extends React.Component {
 state={
   listings: [],
   currentUser: [],
-  reservations:[]
+  reservations:[],
+  token:""
 }
 
 componentDidMount(){
@@ -77,12 +78,22 @@ sendNetToChangeAvailability=(listing)=>{
         })
       }
 
-    sendNetToGetUser=(userObj)=>{
-      this.setState({
-        currentUser: userObj
-      })
+  sendNetToGetUser=(userObj)=>{
+
+     this.setState({
+       currentUser: userObj
+     })
+    // if(userObj.error){
+    //     alert(userObj.error)
+    //   } else{
+    //     localStorage.token=userObj.token
+    //   this.setState({
+    //     currentUser: userObj,
+    //     token: userObj.token
+    //   })
     
-    }
+    // }
+  }
 
 updateUser=(user)=>{
   fetch(`http://localhost:5000/users/${user.user_id}`)
@@ -96,6 +107,7 @@ updateUser=(user)=>{
 }
 
 updatedUser=(user)=>{
+  debugger;
   fetch(`http://localhost:5000/users/${user}`)
   .then(res=>res.json())
   .then((updatedUser)=>{
@@ -121,6 +133,9 @@ sendNetToGetListing=(newListing)=>{
   }
 
 render(){  
+
+ console.log(this.state.currentUser)
+
  return (
   <div className="App">
 
@@ -133,12 +148,12 @@ render(){
  <Switch>
 
   <Route path="/main">
-    {this.state.currentUser.length===0 ? <Redirect to="/login"/> :
+    {this.state.currentUser.length> 0 ? <Redirect to="/login"/> :
     <NavContainer setUserToEmpty={this.setCurrentUserToEmpty} logout={this.logoutUser} changeRedirect={this.changeRedirect} updateUser={this.updatedUser} currentUser={this.state.currentUser} 
-    sendNetToGetListing={this.sendNetToGetListing}/> }
-     {this.state.currentUser.length===0 ? <Redirect to="/login"/> :
+      sendNetToGetListing={this.sendNetToGetListing}/> }
+     {this.state.currentUser.length> 0 ? <Redirect to="/login"/> :
      <ListingContainer updateUser={this.updateUser} currentUser={this.state.currentUser} 
-    changeAvailable={this.sendNetToChangeAvailability} listings={this.state.listings}/> }
+      changeAvailable={this.sendNetToChangeAvailability} listings={this.state.listings}/> }
     </Route>  
 
     <Route path="/login">

@@ -50,10 +50,9 @@ class Reservations extends React.Component{
     })
 
   }
+  render(){
 
-    render(){
-
-    
+    console.log(this.props.currentUser)
  let userReservations=this.props.currentUser.reservations.map((resv, index)=>{
    console.log(this.props.currentUser.reservations)
   return<div className="reserv-cards">

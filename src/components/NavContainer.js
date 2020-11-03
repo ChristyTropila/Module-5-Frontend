@@ -1,7 +1,6 @@
 import React from 'react'
 import Modal from './Modal'
-import Reservations from './Reservations'
-import {Route, Switch, Link, Redirect} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 
 
 class NavContainer extends React.Component{
@@ -34,9 +33,8 @@ class NavContainer extends React.Component{
  
     }
 
-    render(){
+ render(){
 
-        
   if(this.state.redirectToLogin){
     this.setState({
       redirectToLogin:false
