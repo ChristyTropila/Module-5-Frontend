@@ -37,17 +37,20 @@ class Modal extends React.Component{
                    lat: this.state.lat,
                    lng: this.state.lng,
                    user_id: this.props.currentUser.id,
-                   available: true
+                   available: true,
+                   address: address
                 })
             })
             .then(res=>res.json())
             .then((newListing)=>{
                 console.log(newListing)
                 console.log(newListing.user_id)
+                console.log(this.props.updateUser)
+                this.props.updateUser(newListing.user_id)
+
                 this.props.sendNetToGetListing(newListing)
                 this.props.closeModal()
-                this.props.updateUser(newListing.user_id)
-                this.props.changeRedirect()
+                 this.props.changeRedirect()
             })
           
         })

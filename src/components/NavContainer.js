@@ -7,7 +7,8 @@ import {Route, Switch, Link, Redirect} from 'react-router-dom'
 class NavContainer extends React.Component{
 
     state={
-        openModal: false
+        openModal: false,
+        redirectToLogin: false
     }
 
 
@@ -23,18 +24,36 @@ class NavContainer extends React.Component{
         })
     }
 
+    handleLogout=()=>{
+        this.setState({
+            redirectToLogin: true
+        })
+       setTimeout(() => {
+        this.props.setUserToEmpty()
+       }, 2000);  
+ 
+    }
+
     render(){
-        return(
+
         
-            <>
+  if(this.state.redirectToLogin){
+    this.setState({
+      redirectToLogin:false
+    })
+    return <Redirect to="/login"/>
+  }
+        return(
+   
+     <>
         <nav className="navContainer">
             <h1 className="logo">Spot-A-Potty</h1>
                <ul className="navList">
                    <Link className="li-nav" to="/main">Home</Link>
-                   <Link className="li-nav" onClick={this.handleClick}>Create Listing</Link>
+                   <Link className="li-nav" to="/main" onClick={this.handleClick}>Create Listing</Link>
                    <Link className="li-nav"to="/account">Manage Listing</Link>
                    <Link className="li-nav"to="/reservations">Reservations</Link>
-                   <li className="li-nav">Logout</li>
+                   <li className="li-nav" onClick={this.handleLogout}>Logout</li>
                </ul>
 
         </nav>

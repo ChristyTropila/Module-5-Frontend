@@ -80,7 +80,7 @@ transition: al 1.3s;
   width:25%;
   height:30%;
   left:900px;
-  top:400px;
+  top:300px;
   transform: translate(-50%, -80%) scale (1.5);
   transition-delay: 2s;
   border-radius: 10px;
@@ -441,7 +441,7 @@ input{
   background: #4fb3a9;
   width:25%;
   height:auto;
-  left:910px;
+  left:900px;
   top:240px;
   transform: translate(-50%, -80%) scale (1.5);
   transition-delay: 2s;

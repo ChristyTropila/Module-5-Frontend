@@ -14,8 +14,7 @@ class App extends React.Component {
 state={
   listings: [],
   currentUser: [],
-  reservations:[],
-  changeRedirect: false
+  reservations:[]
 }
 
 componentDidMount(){
@@ -115,10 +114,13 @@ sendNetToGetListing=(newListing)=>{
  })
 }
 
-  getListingsOfUser
+  setCurrentUserToEmpty=()=>{
+    this.setState({
+      currentUser:[]
+    })
+  }
 
 render(){  
-
  return (
   <div className="App">
 
@@ -129,9 +131,10 @@ render(){
 
 
  <Switch>
-    <Route path="/main">
+
+  <Route path="/main">
     {this.state.currentUser.length===0 ? <Redirect to="/login"/> :
-    <NavContainer changeRedirect={this.changeRedirect} updateUser={this.updatedUser} currentUser={this.state.currentUser} 
+    <NavContainer setUserToEmpty={this.setCurrentUserToEmpty} logout={this.logoutUser} changeRedirect={this.changeRedirect} updateUser={this.updatedUser} currentUser={this.state.currentUser} 
     sendNetToGetListing={this.sendNetToGetListing}/> }
      {this.state.currentUser.length===0 ? <Redirect to="/login"/> :
      <ListingContainer updateUser={this.updateUser} currentUser={this.state.currentUser} 
@@ -143,13 +146,13 @@ render(){
     </Route>
  
     <Route path="/reservations">
-    <NavContainer currentUser={this.state.currentUser} 
+    <NavContainer  setUserToEmpty={this.setCurrentUserToEmpty} currentUser={this.state.currentUser} 
             sendNetToGetListing={this.sendNetToGetListing}/> 
      <Reservations updateListing={this.sendNetToUpdateListing} updateUserState={this.updateUser} currentUser={this.state.currentUser}/>
     </Route>
 
     <Route path="/account">
-    <NavContainer currentUser={this.state.currentUser} 
+    <NavContainer  setUserToEmpty={this.setCurrentUserToEmpty} currentUser={this.state.currentUser} 
             sendNetToGetListing={this.sendNetToGetListing}/> 
     <Account changeAvailable={this.sendNetToChangeAvailability} updateUser={this.updatedUser} currentUser={this.state.currentUser}/>
     </Route>
