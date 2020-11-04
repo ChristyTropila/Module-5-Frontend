@@ -3,10 +3,56 @@ import React from 'react'
 
 class Account extends React.Component{
 
+    state={
+        ready:false
+    }
+
+    // componentDidMount(){
+    //     debugger;
+    //     if(localStorage.token){
+    //         fetch('http://localhost:5000/users/keep_logged_in', {
+    //           method: 'GET',
+    //           headers: {
+    //             "Authorization": localStorage.token
+    //           }
+    //         })
+    //         .then(res=>res.json())
+    //         .then(this.props.helpHandleResponse)
+    //       }
+    // }
+
+    // componentWillUnmount(){
+    //     debugger;
+    //     if(localStorage.token){
+    //         fetch('http://localhost:5000/users/keep_logged_in', {
+    //           method: 'GET',
+    //           headers: {
+    //             "Authorization": localStorage.token
+    //           }
+    //         })
+    //         .then(res=>res.json())
+    //         .then(this.props.helpHandleResponse)
+    //       }
+    // }
+
+    componentDidMount(){
+        setTimeout(this.handleLoading, 300);
+    }
+
+    handleLoading=()=>{
+        this.setState({
+            ready:true
+        })
+    }
+  
+
 
     deleteListing=(evt)=>{
         fetch(`http://localhost:5000/listings/${evt.target.id}`,{
-         method: 'DELETE'
+         method: 'DELETE',
+         headers: {
+            "Authorization": localStorage.token
+          }
         })
         .then(res=>res.json())
         .then((deletedListing)=>{
@@ -21,10 +67,13 @@ class Account extends React.Component{
     }
 
 
-    updateListing=(evt)=>{
-        console.log(evt.target.id)
-       fetch(`http://localhost:5000/listings/${evt.target.id}`, {
-       method: 'PATCH'
+ updateListing=(evt)=>{
+    
+   fetch(`http://localhost:5000/listings/${evt.target.id}`, {
+   method: 'PATCH',
+   headers: {
+    "Authorization": localStorage.token
+  }
     })
     .then(res=>res.json())
     .then((updatedListing)=>{
@@ -46,12 +95,13 @@ class Account extends React.Component{
     }
 
 
- 
 
 
     render(){
 
-    let userListings=this.props.currentUser.listings.map((list,index)=>{
+     let userListings
+    if(this.state.ready){
+     userListings=this.props.currentUser.user.listings.map((list,index)=>{
      return<div key={list.id} className="account-div">
               <h2 className="act-list-items">{index+1}</h2>
               {list.address}
@@ -63,8 +113,10 @@ class Account extends React.Component{
               {list.reservations.length===0 ?<button className="list-delete" id={list.id} onClick={this.deleteListing}>Remove Listing</button> : null}
           </div>
         })
+    }
 
-
+   console.log(userListings)
+   console.log(this.state.ready)
         return(
             <div className="reservation-comp">
             <div className="account-page">

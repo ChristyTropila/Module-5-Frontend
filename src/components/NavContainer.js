@@ -11,6 +11,7 @@ class NavContainer extends React.Component{
     }
 
 
+
     handleClick=()=>{
       this.setState({
           openModal: true
@@ -29,6 +30,7 @@ class NavContainer extends React.Component{
         })
        setTimeout(() => {
         this.props.setUserToEmpty()
+        localStorage.clear()
        }, 2000);  
  
     }
@@ -55,7 +57,7 @@ class NavContainer extends React.Component{
                </ul>
 
         </nav>
-        {this.state.openModal ? <Modal changeRedirect={this.props.changeRedirect} updateUser={this.props.updateUser} currentUser={this.props.currentUser} closeModal={this.closeModal} sendNetToGetListing={this.props.sendNetToGetListing} showModal={this.state.openModal}/> : null}
+        {this.state.openModal ? <Modal helpHandleResponse={this.props.helpHandleResponse} changeRedirect={this.props.changeRedirect} updateUser={this.props.updateUser} currentUser={this.props.currentUser} closeModal={this.closeModal} sendNetToGetListing={this.props.sendNetToGetListing} showModal={this.state.openModal}/> : null}
             </>
         )
     }

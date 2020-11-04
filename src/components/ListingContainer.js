@@ -5,7 +5,7 @@ function ListingContainer(props){
 
 return(
      <div className="listingContainer">
-        <List
+      <List
         list={props.listings}
         changeAvailable={props.changeAvailable}
         currentUser={props.currentUser}

@@ -56,7 +56,6 @@ class List extends React.Component{
       }
       
 render(){
-  console.log(this.props.list)
   const {lat, lng, available, user, id}=this.props.list
   const {userLocation} = this.state
 

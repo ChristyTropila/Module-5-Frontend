@@ -7,6 +7,20 @@ class Reservations extends React.Component{
     review:"",
     showTextBox: true
   }
+  
+  componentDidMount(){
+    if(localStorage.token){
+        fetch('http://localhost:5000/users/keep_logged_in', {
+          method: 'GET',
+          headers: {
+            "Authorization": localStorage.token
+          }
+        })
+        .then(res=>res.json())
+        .then(this.props.helpHandleResponse)
+      }
+}
+
 
    handleInputChange=(evt)=>{
     console.log(evt.target.value)
@@ -27,7 +41,7 @@ class Reservations extends React.Component{
     },
     body: JSON.stringify({
       listing_id: evt.target.id,
-      user_id: this.props.currentUser.id,
+      user_id: this.props.currentUser.user.id,
       textarea: this.state.review,
       rating:5
      })
@@ -42,10 +56,12 @@ class Reservations extends React.Component{
   handleClick=(evt)=>{
     fetch(`http://localhost:5000/reservations/${evt.target.id}`,{
       method: 'DELETE',
+      headers: {
+        "Authorization": localStorage.token
+      }
   })
   .then(res=>res.json())
   .then((reservation)=>{
-    console.log(reservation)
     this.props.updateUserState(reservation)
     })
 
@@ -53,8 +69,8 @@ class Reservations extends React.Component{
   render(){
 
     console.log(this.props.currentUser)
- let userReservations=this.props.currentUser.reservations.map((resv, index)=>{
-   console.log(this.props.currentUser.reservations)
+ let userReservations=this.props.currentUser.user.reservations.map((resv, index)=>{
+   console.log(this.props.currentUser.user.reservations)
   return<div className="reserv-cards">
     <div className="row">
      <div key={resv.id} className="card">

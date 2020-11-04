@@ -13,15 +13,16 @@ class ReserveModal extends React.Component{
     }
 
  handleSubmit=(evt)=>{
-   console.log(this.props.currentUser)
+
         evt.preventDefault()
         fetch('http://localhost:5000/reservations', {
             method: 'POST',
             headers: {
-                "Content-Type": 'Application/json'
+                "Content-Type": 'Application/json',
+                "Authorization": localStorage.token
             },
             body: JSON.stringify({
-                user_id: this.props.currentUser.id,
+                user_id: this.props.currentUser.user.id,
                 listing_id: this.props.list.id,
                 booking_time: this.state.time
         })

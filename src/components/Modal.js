@@ -10,6 +10,7 @@ class Modal extends React.Component{
     }
 
 
+
     handleInputChange=(address)=>{
         this.setState({address})
       }
@@ -32,12 +33,13 @@ class Modal extends React.Component{
             fetch('http://localhost:5000/listings', {
                 method: 'POST',
                 headers: {
-                    "Content-Type": 'Application/json'
+                    "Content-Type": 'Application/json',
+                    "Authorization": localStorage.token
                 },
                 body: JSON.stringify({
                    lat: this.state.lat,
                    lng: this.state.lng,
-                   user_id: this.props.currentUser.id,
+                   user_id: this.props.currentUser.user.id,
                    available: true,
                    address: address
                 })

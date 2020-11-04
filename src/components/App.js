@@ -4,7 +4,7 @@ import React from 'react'
 import NavContainer from './NavContainer'
 import ListingContainer from './ListingContainer'
 import LoginRegister from './LoginRegister'
-import {Route, Switch, Link, Redirect} from 'react-router-dom'
+import {Route, Switch, Link, Redirect, withRouter} from 'react-router-dom'
 import Reservations from './Reservations'
 import Account from './Account'
 import {TransitionGroup, CSSTransition} from 'react-transition-group'
@@ -19,6 +19,37 @@ state={
 }
 
 componentDidMount(){
+debugger;
+console.log("app component did mount")
+if(localStorage.token){
+  fetch('http://localhost:5000/users/keep_logged_in', {
+    method: 'GET',
+    headers: {
+      "Authorization": localStorage.token
+    }
+  })
+  .then(res=>res.json())
+  .then(this.helpHandleResponse)
+}
+}
+
+componentWillUnmount(){
+  debugger;
+}
+
+helpHandleResponse=(resp)=>{
+ console.log("help handle response")
+  localStorage.token=resp.token
+  this.setState({
+    currentUser: resp,
+    token: resp.token
+  })
+  this.fetchListings()
+}
+
+
+ fetchListings=()=>{
+   console.log("fetching listings")
   fetch('http://localhost:5000/listings')
   .then(resp=>resp.json())
   .then((listingArray)=>{
@@ -27,10 +58,12 @@ componentDidMount(){
     })
   })
 }
+ 
+
 
 //When a user reserves a listing, update the available attritute to false
 sendNetToChangeAvailability=(listing)=>{
-  console.log(listing)
+  console.log("send net to change available")
   fetch(`http://localhost:5000/listings/${listing.listing_id}`, {
     method: 'PATCH',
     headers: {
@@ -59,8 +92,8 @@ sendNetToChangeAvailability=(listing)=>{
     }
 
     sendNetToUpdateListing=(listing)=>{
-      console.log(listing)
-      console.log("helllooo")
+      console.log("send net to update listing")
+      console.log("updating listing")
       let elementIndex=this.state.listings.findIndex(element=>
         element.id ===listing.id
         )
@@ -79,23 +112,24 @@ sendNetToChangeAvailability=(listing)=>{
       }
 
   sendNetToGetUser=(userObj)=>{
-
-     this.setState({
-       currentUser: userObj
-     })
-    // if(userObj.error){
-    //     alert(userObj.error)
-    //   } else{
-    //     localStorage.token=userObj.token
-    //   this.setState({
-    //     currentUser: userObj,
-    //     token: userObj.token
-    //   })
+    console.log("send net to get user")
+    //  this.setState({
+    //    currentUser: userObj
+    //  })
+    if(userObj.error){
+        alert(userObj.error)
+      } else{
+      localStorage.token=userObj.token
+      this.setState({
+        currentUser: userObj,
+        token: userObj.token
+      })
     
-    // }
+    }
   }
 
 updateUser=(user)=>{
+  console.log("updating user")
   fetch(`http://localhost:5000/users/${user.user_id}`)
   .then(res=>res.json())
   .then((updatedUser)=>{
@@ -107,7 +141,7 @@ updateUser=(user)=>{
 }
 
 updatedUser=(user)=>{
-  debugger;
+  console.log("updateduser")
   fetch(`http://localhost:5000/users/${user}`)
   .then(res=>res.json())
   .then((updatedUser)=>{
@@ -120,6 +154,7 @@ updatedUser=(user)=>{
 
 //use arrow function or undefined
 sendNetToGetListing=(newListing)=>{
+  console.log("send net ot get listings")
  let copyOfListings=[...this.state.listings, newListing]
  this.setState({
    listings: copyOfListings
@@ -133,8 +168,8 @@ sendNetToGetListing=(newListing)=>{
   }
 
 render(){  
-
  console.log(this.state.currentUser)
+ console.log(this.state.listings)
 
  return (
   <div className="App">
@@ -154,6 +189,7 @@ render(){
      {this.state.currentUser.length> 0 ? <Redirect to="/login"/> :
      <ListingContainer updateUser={this.updateUser} currentUser={this.state.currentUser} 
       changeAvailable={this.sendNetToChangeAvailability} listings={this.state.listings}/> }
+      
     </Route>  
 
     <Route path="/login">
@@ -161,15 +197,18 @@ render(){
     </Route>
  
     <Route path="/reservations">
+    {this.state.currentUser.length> 0 ? <Redirect to="/login"/> : 
     <NavContainer  setUserToEmpty={this.setCurrentUserToEmpty} currentUser={this.state.currentUser} 
-            sendNetToGetListing={this.sendNetToGetListing}/> 
-     <Reservations updateListing={this.sendNetToUpdateListing} updateUserState={this.updateUser} currentUser={this.state.currentUser}/>
+ sendNetToGetListing={this.sendNetToGetListing}/> }
+   {this.state.currentUser.length> 0 ? <Redirect to="/login"/> : 
+     <Reservations  helpHandleResponse={this.helpHandleResponse} updateListing={this.sendNetToUpdateListing} updateUserState={this.updateUser} currentUser={this.state.currentUser}/>}
     </Route>
 
     <Route path="/account">
     <NavContainer  setUserToEmpty={this.setCurrentUserToEmpty} currentUser={this.state.currentUser} 
             sendNetToGetListing={this.sendNetToGetListing}/> 
-    <Account changeAvailable={this.sendNetToChangeAvailability} updateUser={this.updatedUser} currentUser={this.state.currentUser}/>
+    <Account helpHandleResponse={this.helpHandleResponse} changeAvailable={this.sendNetToChangeAvailability} updateUser={this.updatedUser} currentUser={this.state.currentUser}/>
+   
     </Route>
   </Switch>
 
@@ -181,4 +220,5 @@ render(){
 }
 }
 
-export default App;
+let magicComponent=withRouter(App)
+export default magicComponent;
