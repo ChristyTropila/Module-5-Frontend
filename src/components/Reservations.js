@@ -5,21 +5,19 @@ class Reservations extends React.Component{
 
   state={
     review:"",
-    showTextBox: true
+    showTextBox: true,
+    ready:false
   }
-  
+
   componentDidMount(){
-    if(localStorage.token){
-        fetch('http://localhost:5000/users/keep_logged_in', {
-          method: 'GET',
-          headers: {
-            "Authorization": localStorage.token
-          }
-        })
-        .then(res=>res.json())
-        .then(this.props.helpHandleResponse)
-      }
-}
+      setTimeout(this.handleLoading, 300);
+  }
+
+  handleLoading=()=>{
+      this.setState({
+          ready:true
+      })
+  }
 
 
    handleInputChange=(evt)=>{
@@ -67,25 +65,27 @@ class Reservations extends React.Component{
 
   }
   render(){
+let userReservations
 
-    console.log(this.props.currentUser)
- let userReservations=this.props.currentUser.user.reservations.map((resv, index)=>{
-   console.log(this.props.currentUser.user.reservations)
+ if(this.state.ready){
+    userReservations=this.props.currentUser.user.reservations.map((resv, index)=>{
+ 
   return<div className="reserv-cards">
     <div className="row">
      <div key={resv.id} className="card">
-       <h1 className="index-text">{index + 1.}</h1>
        <h2 className="date-text">{new Date(resv.booking_time).toDateString()}</h2>
        <h2 className="time-text">{new Date(resv.booking_time).toLocaleTimeString()}</h2>
        <textarea ref={index} className={this.state.showTextBox ? "review-box" : "review-hide"} type="text" name="review" value={this.state.index} onChange={this.handleInputChange} placeholder="Leave a Review!" />
        <button id={resv.listing_id} onClick={this.handleReviewSubmit} type="submit" className={this.state.showTextBox ? "review-btn" : "rvw-btn-hide"}>Submit</button>
-       <input onClick={this.handleClick}className="checkbox" type="checkbox" id={resv.id} name="completed" value="completed"/>
        <label className="checkbox-label" for="completed"> CLOSE RESERVATION</label> 
+
+       <input onClick={this.handleClick}className="checkbox" type="checkbox" id={resv.id} name="completed" value="completed"/>
 
    </div>
    </div>
   </div>
 })
+ }
 
      return(
         <div className="reservation-comp">

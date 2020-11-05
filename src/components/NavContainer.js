@@ -7,9 +7,19 @@ class NavContainer extends React.Component{
 
     state={
         openModal: false,
-        redirectToLogin: false
+        redirectToLogin: false,
+        ready: false
     }
 
+    componentDidMount(){
+        setTimeout(this.handleLoading, 300);
+    }
+  
+    handleLoading=()=>{
+        this.setState({
+            ready:true
+        })
+    }
 
 
     handleClick=()=>{
@@ -43,10 +53,12 @@ class NavContainer extends React.Component{
     })
     return <Redirect to="/login"/>
   }
-        return(
-   
-     <>
-        <nav className="navContainer">
+ return(
+ <>
+     <nav className="navContainer">
+      {this.state.ready ?<span className={this.props.currentUser.user.reservations.length>0 ?"resv-badge" : "resv-badge-hide"}>{this.props.currentUser.user.reservations.length}</span> : null }
+      {this.state.ready ?<span className={this.props.currentUser.user.listings[0].reservations.length>0 ?"list-badge" : "list-badge-hide"}>{this.props.currentUser.user.listings.[0].reservations.length}</span> : null }
+
             <h1 className="logo">Spot-A-Potty</h1>
                <ul className="navList">
                    <Link className="li-nav" to="/main">Home</Link>
@@ -58,7 +70,8 @@ class NavContainer extends React.Component{
 
         </nav>
         {this.state.openModal ? <Modal helpHandleResponse={this.props.helpHandleResponse} changeRedirect={this.props.changeRedirect} updateUser={this.props.updateUser} currentUser={this.props.currentUser} closeModal={this.closeModal} sendNetToGetListing={this.props.sendNetToGetListing} showModal={this.state.openModal}/> : null}
-            </>
+        : 
+        </>
         )
     }
 }

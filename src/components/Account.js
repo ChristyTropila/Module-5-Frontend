@@ -7,34 +7,6 @@ class Account extends React.Component{
         ready:false
     }
 
-    // componentDidMount(){
-    //     debugger;
-    //     if(localStorage.token){
-    //         fetch('http://localhost:5000/users/keep_logged_in', {
-    //           method: 'GET',
-    //           headers: {
-    //             "Authorization": localStorage.token
-    //           }
-    //         })
-    //         .then(res=>res.json())
-    //         .then(this.props.helpHandleResponse)
-    //       }
-    // }
-
-    // componentWillUnmount(){
-    //     debugger;
-    //     if(localStorage.token){
-    //         fetch('http://localhost:5000/users/keep_logged_in', {
-    //           method: 'GET',
-    //           headers: {
-    //             "Authorization": localStorage.token
-    //           }
-    //         })
-    //         .then(res=>res.json())
-    //         .then(this.props.helpHandleResponse)
-    //       }
-    // }
-
     componentDidMount(){
         setTimeout(this.handleLoading, 300);
     }
@@ -104,7 +76,7 @@ class Account extends React.Component{
      userListings=this.props.currentUser.user.listings.map((list,index)=>{
      return<div key={list.id} className="account-div">
               <h2 className="act-list-items">{index+1}</h2>
-              {list.address}
+              <h2 className="act-list-items">{list.address}</h2>
               <h3 className="act-list-items">You are listed as: {list.available ? "available" : "unavailable"}</h3>
               {list.getNameForReserv.length ===0 ? <button className="list-update" id={list.id} onClick={this.updateListing}>Change Availability</button> : null}
               {list.getNameForReserv.length>0 ? <h3 className="act-list-items">You are booked by: {list.getNameForReserv[0].name} </h3> :null}

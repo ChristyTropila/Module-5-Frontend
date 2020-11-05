@@ -20,11 +20,13 @@
   left: 0px;
   right: 0px;
 
+
 }
 
 
 
 .navContainer{
+  position: static;
 justify-content: space-around;
 align-items: center;
 height:140px;
@@ -166,7 +168,7 @@ input{
   height: 135px;
   margin-top:-90px;
   z-index: -3;
-  border-right-width:1300px;
+  border-right-width:1350px;
   border-right-style: solid;
   border-right-color:#4fb3a9;
   border-right-width:1080px
@@ -240,48 +242,60 @@ input{
 .row{
   float: left;
   width: 65%;
-  padding: 0 10px;
+  /* padding: 0 10px; */
  
 }
 
 .card{
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
   background: white;
   color:black;
+  padding:30px 5px;
   border-style:solid;
-  border-color:black;
-  border-width:6px;
-  height:400px;
-  width:500px;
+  border-color:#4fb3a9;
+  border-width:2px;
+  height:890px;
+  width:1089px;
+  border-right-width:190px;
+  border-right-color:#4fb3a9;
+  border-bottom-width:140px;
+  border-bottom-color:black;
+  border-left-color:black;
+  border-left-width:10px;
+
+
 
 }
 
-.card:hover{
+/* .card:hover{
   transform: scale(1.2)
-}
-
+} */
+/* 
 .index-text{
  margin-left:10px;
- font-size: 40px;
+ font-size: 80px;
  margin-bottom:20px;
-}
+} */
 
 .date-text{
-  margin-left:25px;
-  margin-bottom:40px;
+  margin-left:65px;
+  margin-top:50px;
+  font-size: 50px;
+  margin-bottom:35px;
  
 }
 
 .time-text{
-  margin-left:25px;
+  margin-left:65px;
   margin-bottom:10px;
+  font-size: 35px;
 }
 
 .checkbox{
-  margin-top:20px;
   width:10%;
+  margin-top:70px;
   float:left;
-  margin-left:25px;
+  margin-left:100px;
+  /* margin-left:-200px; */
 }
 
 .checkbox:hover{
@@ -289,21 +303,23 @@ input{
 }
 
 .checkbox-label{
-  font-size: 20px;
+  font-size: 30px;
   font-weight: 900;
+  margin-top:80px;
+  margin-right:-50px;
   float:left;
-  margin-top:40px;
-  margin-left:12px;
+  margin-left:65px;
 }
 
 .review-btn{
-  width:94px;
+  width:120px;
   height:50px;
-  margin-top:75px;
-  margin-right:50px;
-  font-size:20px;
+  margin-top:310px;
+
+  margin-left:15px;
+  font-size:25px;
   font-weight: 600;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   background:#4fb3a9;
   color:white;
   border-style: solid;
@@ -319,14 +335,14 @@ input{
 
 .review-box{
   float:left;
-  font-size:20px;
+  font-size:30px;
   font-weight: 800;
-  margin-top:25px;
-  height:100px;
-  margin-right:10px;
+  margin-top:60px;
+  height:300px;
+  width:600px;
   border-style:solid;
   border-width: 3px;
-  margin-left:25px;
+  margin-left:65px;
 }
 
 .review-hide{
@@ -372,15 +388,17 @@ input{
 .account-div{
   position:relative;
   margin-bottom: 20px;
- left:1225px;
+ left:1224px;
  top:135px;
  background:white;
  float:left;
- width:60%;
-  position: relative;
+  width:800px;
   color: black;
-  font-size:30px;
+  font-size:20px;
   padding:20px 20px;
+  border-bottom-style: solid;
+  border-bottom-color: black;
+  border-width: 655px;
 }
 
 .list-delete{
@@ -543,5 +561,40 @@ input{
   height:100px;
 }
 
+.resv-badge{
+  background:red;
+  position: absolute;
+  z-index: 10;
+  color:white;
+  font-weight: 800;
+  font-size:30px;
+  margin-left:380px;
+  width:30px;
+  height:30px;
+  border-radius: 50%;
+  top:700px;
+  padding-left:5px;
+}
+.resv-badge-hide{
+display: none;
+}
 
+
+.list-badge{
+  background:red;
+  position: absolute;
+  z-index: 10;
+  color:white;
+  font-weight: 800;
+  font-size:30px;
+  margin-left:445px;
+  width:30px;
+  height:30px;
+  border-radius: 50%;
+  top:530px;
+  padding-left:5px;
+}
+.list-badge-hide{
+display: none;
+}
 

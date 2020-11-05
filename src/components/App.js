@@ -173,7 +173,6 @@ render(){
 
  return (
   <div className="App">
-
         <TransitionGroup>
           <CSSTransition
             classNames={'fade'}
@@ -181,6 +180,7 @@ render(){
 
 
  <Switch>
+
 
   <Route path="/main">
     {this.state.currentUser.length> 0 ? <Redirect to="/login"/> :
