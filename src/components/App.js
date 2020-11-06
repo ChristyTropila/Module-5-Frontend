@@ -6,8 +6,10 @@ import ListingContainer from './ListingContainer'
 import LoginRegister from './LoginRegister'
 import {Route, Switch, Link, Redirect, withRouter} from 'react-router-dom'
 import Reservations from './Reservations'
+import ChatRoom from './ChatRoom'
 import Account from './Account'
 import {TransitionGroup, CSSTransition} from 'react-transition-group'
+import {ActionCableProvider} from 'react-actioncable-provider'
 
 class App extends React.Component {
 
@@ -19,7 +21,7 @@ state={
 }
 
 componentDidMount(){
-debugger;
+
 console.log("app component did mount")
 if(localStorage.token){
   fetch('http://localhost:5000/users/keep_logged_in', {
@@ -33,9 +35,6 @@ if(localStorage.token){
 }
 }
 
-componentWillUnmount(){
-  debugger;
-}
 
 helpHandleResponse=(resp)=>{
  console.log("help handle response")
@@ -167,9 +166,30 @@ sendNetToGetListing=(newListing)=>{
     })
   }
 
+  getConvData=(id)=>{
+    fetch(`http://localhost:5000/conversations/${id}`)
+    .then(res=>res.json())
+    .then(result => {
+      this.setState({
+        currentRoom:{
+          conversation: result.data,
+          users: result.data.attributes.users,
+          messages: result.data.attributes.messages
+        }
+      })
+    })
+  }
+
+  updateAppStateConv=(newConv)=>{
+    this.setState({
+      conversation: newConv.conversation.data,
+      users: newConv.users,
+      messages: newConv.messages
+    })
+  }
+
+
 render(){  
- console.log(this.state.currentUser)
- console.log(this.state.listings)
 
  return (
   <div className="App">
@@ -177,6 +197,7 @@ render(){
           <CSSTransition
             classNames={'fade'}
             timeout={{enter: 1000, exit: 1000}}>
+
 
 
  <Switch>
@@ -189,19 +210,25 @@ render(){
      {this.state.currentUser.length> 0 ? <Redirect to="/login"/> :
      <ListingContainer updateUser={this.updateUser} currentUser={this.state.currentUser} 
       changeAvailable={this.sendNetToChangeAvailability} listings={this.state.listings}/> }
-      
+     <ActionCableProvider url={'ws://localhost:5000/cable'}>
+    <ChatRoom  cableApp={this.props.cableApp} currentUser={this.state.currentUser} />
+     </ActionCableProvider>
     </Route>  
 
     <Route path="/login">
      <LoginRegister getUser={this.sendNetToGetUser}/>
     </Route>
+
+
  
     <Route path="/reservations">
+    <ActionCableProvider url={'ws://localhost:5000/cable'}>
     {this.state.currentUser.length> 0 ? <Redirect to="/login"/> : 
     <NavContainer  setUserToEmpty={this.setCurrentUserToEmpty} currentUser={this.state.currentUser} 
  sendNetToGetListing={this.sendNetToGetListing}/> }
    {this.state.currentUser.length> 0 ? <Redirect to="/login"/> : 
      <Reservations  helpHandleResponse={this.helpHandleResponse} updateListing={this.sendNetToUpdateListing} updateUserState={this.updateUser} currentUser={this.state.currentUser}/>}
+   </ActionCableProvider>
     </Route>
 
     <Route path="/account">

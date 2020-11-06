@@ -69,9 +69,10 @@ class Account extends React.Component{
 
 
 
-    render(){
+render(){
+    
 
-     let userListings
+  let userListings
     if(this.state.ready){
      userListings=this.props.currentUser.user.listings.map((list,index)=>{
      return<div key={list.id} className="account-div">

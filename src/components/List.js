@@ -8,6 +8,8 @@ import mapStyles from './mapStyles'
 let hostIcon='https://res.cloudinary.com/dm3tfsraw/image/upload/v1604008205/littleman_xmjgpr.png'
 let listingIcons='https://res.cloudinary.com/dm3tfsraw/image/upload/v1604008457/toilet_mmznr8.png'
 
+
+
 class List extends React.Component{
 
     state={

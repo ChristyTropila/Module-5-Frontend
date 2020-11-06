@@ -4,15 +4,6 @@
   box-sizing: border-box;
   font-family: 'Cutive Mono', monospace;
 }
-/* body{
-  position:relative;
-  background: black;
-  border-style:solid;
-  border-color: black;
-  border-width:10px;
-
-} */
-
 
 .App{
   position: absolute;
@@ -598,3 +589,22 @@ display: none;
 display: none;
 }
 
+.text-modal{
+  position: absolute;
+  background: white;
+  z-index:10;
+  right:0;
+  margin-right:350px;
+  height:850px;
+  width:600px;
+  margin-top:90px;
+  border-style:solid;
+  border-color:black;
+  border-width:8px;
+}
+
+.send-msg{
+  position: absolute;
+  bottom: 0;
+  width:730px;
+}

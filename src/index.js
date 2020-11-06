@@ -5,9 +5,19 @@ import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom'
 
+import {ActionCableProvider} from 'react-actioncable-provider'
+// import actionCable from 'actioncable'
+
+// const cable={}
+// cable.cable=actionCable.createConsumer('ws.//localhost:5000/cable')
+
+
 ReactDOM.render(
+  
   <BrowserRouter>
-    <App />
+ 
+   <App />
+
   </BrowserRouter>,
   document.getElementById('root')
 );

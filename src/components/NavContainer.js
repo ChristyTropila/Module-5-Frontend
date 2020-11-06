@@ -12,7 +12,7 @@ class NavContainer extends React.Component{
     }
 
     componentDidMount(){
-        setTimeout(this.handleLoading, 300);
+        setTimeout(this.handleLoading,2000);
     }
   
     handleLoading=()=>{
@@ -20,8 +20,6 @@ class NavContainer extends React.Component{
             ready:true
         })
     }
-
-
     handleClick=()=>{
       this.setState({
           openModal: true
@@ -45,6 +43,8 @@ class NavContainer extends React.Component{
  
     }
 
+  
+
  render(){
 
   if(this.state.redirectToLogin){
@@ -54,10 +54,10 @@ class NavContainer extends React.Component{
     return <Redirect to="/login"/>
   }
  return(
- <>
+    <>
      <nav className="navContainer">
-      {this.state.ready ?<span className={this.props.currentUser.user.reservations.length>0 ?"resv-badge" : "resv-badge-hide"}>{this.props.currentUser.user.reservations.length}</span> : null }
-      {this.state.ready ?<span className={this.props.currentUser.user.listings[0].reservations.length>0 ?"list-badge" : "list-badge-hide"}>{this.props.currentUser.user.listings.[0].reservations.length}</span> : null }
+      {this.state.ready ?<span className={this.props.currentUser.user.reservations.length>0 ?"resv-badge" : "resv-badge-hide"}>{this.props.currentUser.user.reservations.length}</span> : null } 
+      {this.state.ready ?<span className={this.props.currentUser.user.listings[0].reservations.length>0 ?"list-badge" : "list-badge-hide"}>{this.props.currentUser.user.listings[0].reservations.length}</span> : null } 
 
             <h1 className="logo">Spot-A-Potty</h1>
                <ul className="navList">
