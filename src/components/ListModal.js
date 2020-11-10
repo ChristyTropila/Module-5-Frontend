@@ -30,7 +30,7 @@ class ListModal extends React.Component{
 
  render(){
       console.log(this.props.list.reviews)
-        let{lat, lng, available, user, id}=this.props.list
+        let{available, user}=this.props.list
 
         let reviewList=this.props.list.reviews.map((review)=>{
                 return<h5 className="title-list-2" key={review.id}>
@@ -40,8 +40,7 @@ class ListModal extends React.Component{
                        
                      
   return(
-        
-    <div className="list-modal">
+  <div className="list-modal">
     <li className="list-modal-li">
       <h3 className="x-exit-list" onClick={this.hideListModal}>X</h3>
         <h3 className="title-list">Status: {available ? "Open": "Not Available"}</h3>

@@ -1,5 +1,4 @@
 import React from 'react'
-import { mockComponent } from 'react-dom/test-utils'
 import TextModal from './TextModal'
 
 class Reservations extends React.Component{
@@ -14,7 +13,7 @@ class Reservations extends React.Component{
 
   componentDidMount(){
        console.log("helo")
-      setTimeout(this.handleLoading, 300);
+      setTimeout(this.handleLoading,300);
   }
 
   handleLoading=()=>{
@@ -55,7 +54,6 @@ class Reservations extends React.Component{
    }
 
   createChatRoom=(evt)=>{
-  
     console.log(this.props.currentUser)
     fetch('http://localhost:5000/conversations',{
       method: 'POST',
@@ -73,6 +71,7 @@ class Reservations extends React.Component{
       convoId: res.id
     })
   })
+  
      this.setState({
        textModal:true
      })
@@ -91,25 +90,28 @@ class Reservations extends React.Component{
     })
 
   }
+
+closeTextModal=(evt)=>{
+  this.setState({
+    textModal: false
+  })
+}
+
+
 render(){
-
-  console.log(this.state.convoId)
-
  let userReservations
  if(this.state.ready){
     userReservations=this.props.currentUser.user.reservations.map((resv, index)=>{
- 
   return<div className="reserv-cards">
     <div className="row">
      <div key={resv.id} className="card">
        <h2 className="date-text">{new Date(resv.booking_time).toDateString()}</h2>
        <h2 className="time-text">{new Date(resv.booking_time).toLocaleTimeString()}</h2>
-       <button id={resv.listing_id} onClick={this.createChatRoom} type="submit" className="review-btm">Text Message</button>
+       <button id={resv.listing_id} onClick={this.createChatRoom} type="submit" className="txt-msg-rsv">Contact</button>
        <textarea ref={index} className={this.state.showTextBox ? "review-box" : "review-hide"} type="text" name="review" value={this.state.index} onChange={this.handleInputChange} placeholder="Leave a Review!" />
        <button id={resv.listing_id} onClick={this.handleReviewSubmit} type="submit" className={this.state.showTextBox ? "review-btn" : "rvw-btn-hide"}>Submit</button>
        <label className="checkbox-label" for="completed"> CLOSE RESERVATION</label> 
        <input onClick={this.handleClick}className="checkbox" type="checkbox" id={resv.id} name="completed" value="completed"/>
-
    </div>
    </div>
   </div>
@@ -123,7 +125,7 @@ render(){
            <h1 className="reserv-banner">Reserv</h1>
            <h1 className="reserv-banner-2">ations</h1>
            {userReservations}
-           {this.state.textModal ? <TextModal convoId={this.state.convoId} currentUser={this.props.currentUser}/> : null}
+           {this.state.textModal ? <TextModal closeTextModal={this.closeTextModal} convoId={this.state.convoId} currentUser={this.props.currentUser}/> : null}
           </div>
           </div>
       

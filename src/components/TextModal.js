@@ -1,7 +1,6 @@
 import React from 'react'
+
 import {ActionCable} from 'react-actioncable-provider'
-
-
 
 class TextModal extends React.Component{
     state={
@@ -13,15 +12,16 @@ class TextModal extends React.Component{
         fetch(`http://localhost:5000/conversations/${this.props.convoId}`)
           .then(res=>res.json())
           .then(messages => {
-            this.setState({
-                messages: messages.messages
-            })
+                this.setState({
+                    messages: messages
+                })
+             
+          
           })
       }
 
        
     handleReceivedMessage=(message)=>{
-     
           let copyOfMessages=[...this.state.messages, message]
            this.setState({
                messages: copyOfMessages
@@ -46,33 +46,41 @@ class TextModal extends React.Component{
              body: JSON.stringify({
              user_id: user_id,
              content: this.state.newMessage,
-             conversation_id: this.props.currentUser.user.listings[0].id
+             conversation_id: this.props.convoId
          })
        })
          this.setState({
              newMessage: ""
          })
        }
-     
-   
 
+       hideTextModal=(e)=>{
+        e.preventDefault()
+    
+        this.props.closeTextModal()
+   
+    }
+     
     render(){
-        console.log(this.state.messages)
+        console.log(this.props.convoId)
+         let  messageArray=this.state.messages.map((mesg)=>{
+             return<div className="text-messages">
+              {mesg.content ?  <span className="ind-text-user">{mesg.user.name}: </span> : null}
+              <span className="ind-text">{mesg.content}</span>
+              </div>
+           })
         
-        // if(this.state.messages.length > 0){
-        //     let messageArray=this.state.messages.map((mesg)=>{
-        //         debugger;
-        //    })
-        // }
      
   return(
   <div className="text-modal">
+  <h3 className="x-exit-chat" onClick={this.hideTextModal}>X</h3>
      <ActionCable
         channel={{channel:"RoomChannel"}}
         onConnected={this.handleConnected}
         onReceived={this.handleReceivedMessage}
             />
-          {/* {messageArray} */}
+          
+          {messageArray}
          <form className="send-msg" onSubmit={this.handleSubmit}>
             <input
               type="text"
@@ -81,7 +89,7 @@ class TextModal extends React.Component{
               onChange={this.handleChange}
               placeholder="Type message here"
             />
-            <input type="submit"/>
+            <input className="text-submit" type="submit" placeholder="send"/>
           
           </form>   
           </div>

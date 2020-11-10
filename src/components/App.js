@@ -6,10 +6,10 @@ import ListingContainer from './ListingContainer'
 import LoginRegister from './LoginRegister'
 import {Route, Switch, Link, Redirect, withRouter} from 'react-router-dom'
 import Reservations from './Reservations'
-import ChatRoom from './ChatRoom'
 import Account from './Account'
 import {TransitionGroup, CSSTransition} from 'react-transition-group'
 import {ActionCableProvider} from 'react-actioncable-provider'
+import Profile from './Profile'
 
 class App extends React.Component {
 
@@ -22,9 +22,8 @@ state={
 
 componentDidMount(){
 
-console.log("app component did mount")
-if(localStorage.token){
-  fetch('http://localhost:5000/users/keep_logged_in', {
+  if(localStorage.token){
+   fetch('http://localhost:5000/users/keep_logged_in', {
     method: 'GET',
     headers: {
       "Authorization": localStorage.token
@@ -37,7 +36,7 @@ if(localStorage.token){
 
 
 helpHandleResponse=(resp)=>{
- console.log("help handle response")
+
   localStorage.token=resp.token
   this.setState({
     currentUser: resp,
@@ -48,7 +47,7 @@ helpHandleResponse=(resp)=>{
 
 
  fetchListings=()=>{
-   console.log("fetching listings")
+ 
   fetch('http://localhost:5000/listings')
   .then(resp=>resp.json())
   .then((listingArray)=>{
@@ -62,11 +61,12 @@ helpHandleResponse=(resp)=>{
 
 //When a user reserves a listing, update the available attritute to false
 sendNetToChangeAvailability=(listing)=>{
-  console.log("send net to change available")
+
   fetch(`http://localhost:5000/listings/${listing.listing_id}`, {
     method: 'PATCH',
     headers: {
-        "Content-Type": 'Application/json'
+        "Content-Type": 'Application/json', 
+        "Authorization": localStorage.token
     },
     body: JSON.stringify({
       id: listing.listing_id
@@ -91,8 +91,7 @@ sendNetToChangeAvailability=(listing)=>{
     }
 
     sendNetToUpdateListing=(listing)=>{
-      console.log("send net to update listing")
-      console.log("updating listing")
+  
       let elementIndex=this.state.listings.findIndex(element=>
         element.id ===listing.id
         )
@@ -111,10 +110,7 @@ sendNetToChangeAvailability=(listing)=>{
       }
 
   sendNetToGetUser=(userObj)=>{
-    console.log("send net to get user")
-    //  this.setState({
-    //    currentUser: userObj
-    //  })
+
     if(userObj.error){
         alert(userObj.error)
       } else{
@@ -128,7 +124,7 @@ sendNetToChangeAvailability=(listing)=>{
   }
 
 updateUser=(user)=>{
-  console.log("updating user")
+ 
   fetch(`http://localhost:5000/users/${user.user_id}`)
   .then(res=>res.json())
   .then((updatedUser)=>{
@@ -136,11 +132,11 @@ updateUser=(user)=>{
       currentUser: updatedUser
     })
   })
+
   this.componentDidMount()
 }
 
 updatedUser=(user)=>{
-  console.log("updateduser")
   fetch(`http://localhost:5000/users/${user}`)
   .then(res=>res.json())
   .then((updatedUser)=>{
@@ -153,7 +149,6 @@ updatedUser=(user)=>{
 
 //use arrow function or undefined
 sendNetToGetListing=(newListing)=>{
-  console.log("send net ot get listings")
  let copyOfListings=[...this.state.listings, newListing]
  this.setState({
    listings: copyOfListings
@@ -190,6 +185,7 @@ sendNetToGetListing=(newListing)=>{
 
 
 render(){  
+  console.log(this.state.currentUser)
 
  return (
   <div className="App">
@@ -201,8 +197,6 @@ render(){
 
 
  <Switch>
-
-
   <Route path="/main">
     {this.state.currentUser.length> 0 ? <Redirect to="/login"/> :
     <NavContainer setUserToEmpty={this.setCurrentUserToEmpty} logout={this.logoutUser} changeRedirect={this.changeRedirect} updateUser={this.updatedUser} currentUser={this.state.currentUser} 
@@ -210,33 +204,36 @@ render(){
      {this.state.currentUser.length> 0 ? <Redirect to="/login"/> :
      <ListingContainer updateUser={this.updateUser} currentUser={this.state.currentUser} 
       changeAvailable={this.sendNetToChangeAvailability} listings={this.state.listings}/> }
-     <ActionCableProvider url={'ws://localhost:5000/cable'}>
-    <ChatRoom  cableApp={this.props.cableApp} currentUser={this.state.currentUser} />
-     </ActionCableProvider>
     </Route>  
 
     <Route path="/login">
      <LoginRegister getUser={this.sendNetToGetUser}/>
     </Route>
 
-
- 
     <Route path="/reservations">
     <ActionCableProvider url={'ws://localhost:5000/cable'}>
     {this.state.currentUser.length> 0 ? <Redirect to="/login"/> : 
     <NavContainer  setUserToEmpty={this.setCurrentUserToEmpty} currentUser={this.state.currentUser} 
- sendNetToGetListing={this.sendNetToGetListing}/> }
+      sendNetToGetListing={this.sendNetToGetListing}/> }
    {this.state.currentUser.length> 0 ? <Redirect to="/login"/> : 
-     <Reservations  helpHandleResponse={this.helpHandleResponse} updateListing={this.sendNetToUpdateListing} updateUserState={this.updateUser} currentUser={this.state.currentUser}/>}
+     <Reservations helpHandleResponse={this.helpHandleResponse} updateListing={this.sendNetToUpdateListing} updateUserState={this.updateUser} currentUser={this.state.currentUser}/>}
    </ActionCableProvider>
     </Route>
 
     <Route path="/account">
+    <ActionCableProvider url={'ws://localhost:5000/cable'}>
     <NavContainer  setUserToEmpty={this.setCurrentUserToEmpty} currentUser={this.state.currentUser} 
             sendNetToGetListing={this.sendNetToGetListing}/> 
     <Account helpHandleResponse={this.helpHandleResponse} changeAvailable={this.sendNetToChangeAvailability} updateUser={this.updatedUser} currentUser={this.state.currentUser}/>
-   
+     </ActionCableProvider>
     </Route>
+
+
+  <Route path='/profile'>
+  <NavContainer setUserToEmpty={this.setCurrentUserToEmpty} currentUser={this.state.currentUser} 
+            sendNetToGetListing={this.sendNetToGetListing}/> 
+    <Profile updateUser={this.updatedUser} currentUser={this.state.currentUser}/>
+  </Route>
   </Switch>
 
 

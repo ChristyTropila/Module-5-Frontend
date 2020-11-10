@@ -12,7 +12,7 @@ class NavContainer extends React.Component{
     }
 
     componentDidMount(){
-        setTimeout(this.handleLoading,2000);
+        setTimeout(this.handleLoading,3000);
     }
   
     handleLoading=()=>{
@@ -56,8 +56,8 @@ class NavContainer extends React.Component{
  return(
     <>
      <nav className="navContainer">
-      {this.state.ready ?<span className={this.props.currentUser.user.reservations.length>0 ?"resv-badge" : "resv-badge-hide"}>{this.props.currentUser.user.reservations.length}</span> : null } 
-      {this.state.ready ?<span className={this.props.currentUser.user.listings[0].reservations.length>0 ?"list-badge" : "list-badge-hide"}>{this.props.currentUser.user.listings[0].reservations.length}</span> : null } 
+      {/* {this.state.ready ?<span className={this.props.currentUser.user.reservations.length>0 ?"resv-badge" : "resv-badge-hide"}>{this.props.currentUser.user.reservations.length}</span> : null } 
+      {this.state.ready ?<span className={this.props.currentUser.user.listings[0].reservations.length>0 ?"list-badge" : "list-badge-hide"}>{this.props.currentUser.user.listings[0].reservations.length}</span> : null }  */}
 
             <h1 className="logo">Spot-A-Potty</h1>
                <ul className="navList">
@@ -65,6 +65,7 @@ class NavContainer extends React.Component{
                    <Link className="li-nav" to="/main" onClick={this.handleClick}>Create Listing</Link>
                    <Link className="li-nav"to="/account">Manage Listing</Link>
                    <Link className="li-nav"to="/reservations">Reservations</Link>
+                   <Link className="li-nav"to="/profile">Account</Link>
                    <li className="li-nav" onClick={this.handleLogout}>Logout</li>
                </ul>
 

@@ -40,12 +40,18 @@ class LoginRegister extends React.Component{
         })
         .then(res=>res.json())
         .then((loggedInUser)=>{
+            if(loggedInUser.error){
+                <Redirect to="/login"/>
+            }else{
             this.props.getUser(loggedInUser)
             this.setState({
                 redirectToMain: true
             })
+        }
         })
+    
     }
+
 
     handleSubmit=(evt)=>{
         evt.preventDefault()
@@ -82,7 +88,7 @@ render(){
     <div className="create-account-input">
     <input type="text" name="name" value={this.state.name} onChange={this.handleInputChange} placeholder="Name" />
     <input type="text" name="email" value={this.state.email} onChange={this.handleInputChange} placeholder="Email" />
-    <input type="text" name="password"  value={this.state.password} onChange={this.handleInputChange} placeholder="Password" />
+    <input type="password" name="password"  value={this.state.password} onChange={this.handleInputChange} placeholder="Password" />
     <input type="text" name="age"  value={this.state.age} onChange={this.handleInputChange} placeholder="Age" />
     <input type="text" name="contact"  value={this.state.contact} onChange={this.handleInputChange} placeholder="Contact Number" />
  </div>
@@ -92,7 +98,7 @@ render(){
     <form className="create-account-form"  onSubmit={this.handleLoginSubmit}>
     <div className="create-account-input">
     <input type="text" name="emailLogin" value={this.state.emailLogin} onChange={this.handleLoginInputChange} placeholder="Email" />
-    <input type="text" name="passwordLogin"  value={this.state.passwordLogin} onChange={this.handleLoginInputChange} placeholder="Password" />
+    <input type="password" name="passwordLogin"  value={this.state.passwordLogin} onChange={this.handleLoginInputChange} placeholder="Password" />
     </div>
       <button className="create-acct-button" type="submit">Login</button>
      </form>
