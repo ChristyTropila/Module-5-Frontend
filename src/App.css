@@ -6,16 +6,20 @@
 }
 
 .App{
-  position: absolute;
+  position: relative;
+  width:100%;
+  height:100%;
   top:25px;
   left: 0px;
   right: 0px;
+
 }
 
 
 
+
 .navContainer{
-  position: static;
+position: static;
 justify-content: space-around;
 align-items: center;
 height:140px;
@@ -396,20 +400,38 @@ input{
 
 .list-delete{
   float:left;
+  background:#5ea79b;
+  color:white;
   margin-right:100px;
-  width:250px;
+  width:350px;
   height:40px;
-  font-size: 20px;
+  font-size: 25px;
   font-weight: 800;
+  letter-spacing: 2px;
+  margin-top:40px;
 }
 
 .list-update{
   float:left;
+  background:#5ea79b;
+  color:white;
   margin-right:5px;
-  width:250px;
+  width:350px;
   height:40px;
-  font-size:20px;
+  font-size:25px;
   font-weight:800 ;
+  letter-spacing: 2px;
+  margin-top:40px;
+}
+
+.list-update:hover{
+  background:black;
+  transform: scale(1.2)
+}
+
+.list-delete:hover{
+  background:black;
+  transform: scale(1.2)
 }
 
 .list-item{
@@ -475,6 +497,7 @@ input{
  font-weight: 800;
  margin-top:20px;
  margin-bottom:15px;
+ text-transform: capitalize;
 
 }
 
@@ -538,17 +561,109 @@ input{
   margin-top:100px;
 }
 .create-account-form{
-  width: 40%;
+  width: 18%;
+  height:40%;
+  float:right;
+  margin-top:350px;
+  margin-right:570px;
+  border-radius: 2%;
+  z-index:10;
 }
 
 .create-account-input{
   font-size: 20px;
-  
+  width:100%;
+  margin-left:40px;
+  padding: 10px 10px;
+  color:black;
+
+
+}
+.name-input-sign{
+  margin-bottom:5px;
+
+}
+.email-input-sign{
+  margin-bottom: 5px;
+
+}
+.pass-input-sign{
+  margin-bottom: 5px;
+
+}
+.age-input-sign{
+  margin-bottom: 5px;
+
+}
+.contact-input-sign{
+  margin-bottom: 5px;
+
+}
+
+.signup-head{
+  color:black;
+  padding:20px 20px;
+  margin-left:-40px;
+  margin-bottom:20px;
+}
+.login-head{
+  color:black;
+  padding:20px;
+  margin-left:-30px;
+  margin-bottom: 25px;
+}
+
+.email-input-log{
+  margin-bottom:25px;
+}
+
+.pass-input-log{
+  margin-bottom: 25px;
 }
 
 .create-acct-button{
-  width:100px;
+  width:310px;
   height: 50px;
+  margin-left:50px;
+  background-color: #5ea79b;
+  color:white;
+  font-size:40px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.login-acct-button{
+  width:310px;
+  height: 50px;
+  margin-left:50px;
+  background-color: #5ea79b;
+  color:white;
+  font-size:40px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-top:120px;
+  z-index:1;
+}
+
+.login-acct-button:hover{
+  background:black;
+  transform: scale(1.0);
+}
+
+.create-acct-button:hover{
+  background:black;
+  transform: scale(1.0);
+  
+}
+
+.login-account-form{
+  display:block;
+  width: 18%;
+  height:35%;
+  float:right;
+  margin-right:-920px;
+  margin-top:350px;
+  border-radius: 2%;
 }
 
 .autocomplete-dropdown-container{
@@ -623,7 +738,7 @@ display: none;
 
 .text-messages{
   position: relative;  
-  top:70px;
+  top:80px;
   font-size:30px;
   font-weight:700;
   padding:5px;
@@ -688,6 +803,7 @@ display: none;
   margin-right:350px;
   width:700px;
   font-size:25px;
+
 }
 
 .profile-input{
@@ -698,7 +814,7 @@ display: none;
 
 .profile-input-name{
   margin-bottom:50px;
-  margin-left: 55px;
+  margin-left: 45px;
   background: lightgray;
 }
 
@@ -729,4 +845,114 @@ display: none;
   background:black;
   transform: scale(1.2);
   color:white;
+}
+
+.edit-profile-2{
+  width:160px;
+  height:40px;
+  margin-top:30px;
+  margin-left:50px;
+  background:#5ea79b;
+  color:white;
+  font-weight:600;
+  font-size:25px;
+  letter-spacing: 3px;
+}
+
+
+.login-register{
+position:absolute;
+
+}
+
+.logoImage{
+  position:absolute;
+  height:1000px;
+  margin-left:80px;
+  z-index:-1;
+  margin-top:20px;
+ 
+}
+
+.banner-1{
+  position: absolute;
+  right:0;
+  width:500px;
+  height:550px;
+  margin-top:325px;
+  margin-right:530px;
+  /* margin-left:180px; */
+  z-index: -1;
+}
+.banner-2{
+  position: absolute;
+  right:0;
+  width:500px;
+  height:550px;
+  margin-top:325px;
+  margin-right:20px;
+  z-index: -1;
+}
+
+.hanger-1{
+  position: absolute;
+  width:500px;
+  height:200px;
+  right:0;
+  margin-top:140px;
+  margin-right:530px;
+ }
+
+.hanger-2{
+  position: absolute;
+  right:0;
+  width:500px;
+  height:200px;
+  margin-right:20px;
+  margin-top:140px;
+
+}
+
+.error{
+  position: absolute;
+  bottom:0;
+  right:0;
+  font-size: 30px;
+  letter-spacing: 3px;
+  color: #E33C3C;
+  margin-bottom:-150px;
+  margin-right:60px;
+  transition: 400s;
+  
+}
+
+.slogan{
+  position:absolute;
+  z-index:1;
+  bottom:0;
+  margin-bottom:180px;
+  font-size: 40px;
+  margin-left:130px;
+
+  font-weight: 800;
+}
+
+.slogan-1{
+  position:absolute;
+  z-index:1;
+  bottom:0;
+  margin-bottom:110px;
+  margin-left:540px;
+  color: #5ea79b;
+  font-weight: 800;
+  font-size:40px;
+}
+.you{
+  color:black;
+  font-size:50px;
+}
+
+.shit{
+  color: #5ea79b;
+  font-size:50px;
 }

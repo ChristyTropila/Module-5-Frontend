@@ -11,7 +11,6 @@ let listingIcons='https://res.cloudinary.com/dm3tfsraw/image/upload/v1604008457/
 
 
 class List extends React.Component{
-
     state={
         displayModal: false,
         userLocation: {lat: 0, lng: 0},
@@ -20,6 +19,7 @@ class List extends React.Component{
 
     //gets position of currentuser and places vector on map
     componentDidMount() {
+        console.log("hit list")
         fetch(`https://geolocation-db.com/json/${LOC_K}`)
         .then(res=>res.json())
         .then((location)=>{
@@ -72,9 +72,9 @@ render(){
                 zoom={17}
                 initialCenter={userLocation}
                 disableDefaultUI= {true}>
-         <Marker icon={hostIcon} position={{
-           lat: this.state.userLocation.lat,
-           lng: this.state.userLocation.lng
+            <Marker icon={hostIcon} position={{
+              lat: this.state.userLocation.lat,
+              lng: this.state.userLocation.lng
           }}/>
 
           {this.displayMarkers()}

@@ -9,6 +9,7 @@ class TextModal extends React.Component{
        }
    
   componentDidMount(){
+       console.log("component mount hit")
         fetch(`http://localhost:5000/conversations/${this.props.convoId}`)
           .then(res=>res.json())
           .then(messages => {

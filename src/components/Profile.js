@@ -7,7 +7,8 @@ class Profile extends React.Component{
        name: this.props.currentUser.user.name,
        email: this.props.currentUser.user.email,
        contact: this.props.currentUser.user.contact,
-       ready: false
+       ready: false,
+       editComplete: false
    }
    componentDidMount(){
     setTimeout(this.handleLoading, 300);
@@ -43,6 +44,9 @@ class Profile extends React.Component{
         .then((updatedUser)=>{
             console.log(updatedUser)
           this.props.updateUser(updatedUser.id)
+          this.setState({
+              editComplete: true
+          })
       
        
         })
@@ -64,7 +68,7 @@ class Profile extends React.Component{
              <h1>Name</h1> <input className="profile-input-name"type="text" name="name" value={this.state.name} onChange={this.handleInputChange} placeholder={user.name} />
               <h1>Email</h1> <input className="profile-input-email" type="text" name="email" value={this.state.email} onChange={this.handleInputChange} placeholder={user.email}/>
               <h1>Contact</h1> <input className="profile-input-contact" type="text" name="contact" value={this.state.contact} onChange={this.handleInputChange} placeholder={user.contact}/>
-              <button type="submit" className="edit-profile">EDIT</button>
+              <button type="submit" className={this.state.editComplete ? "edit-profile-2": "edit-profile"}>{this.state.editComplete ? "UPDATED!": "EDIT"}</button>
             </form> : null}
             </div>
           </div>

@@ -106,7 +106,7 @@ render(){
     <div className="row">
      <div key={resv.id} className="card">
        <h2 className="date-text">{new Date(resv.booking_time).toDateString()}</h2>
-       <h2 className="time-text">{new Date(resv.booking_time).toLocaleTimeString()}</h2>
+       <h2 className="time-text">{new Date(resv.booking_time).toLocaleTimeString('en-US', { timeZone: 'America/New_York' })}</h2>
        <button id={resv.listing_id} onClick={this.createChatRoom} type="submit" className="txt-msg-rsv">Contact</button>
        <textarea ref={index} className={this.state.showTextBox ? "review-box" : "review-hide"} type="text" name="review" value={this.state.index} onChange={this.handleInputChange} placeholder="Leave a Review!" />
        <button id={resv.listing_id} onClick={this.handleReviewSubmit} type="submit" className={this.state.showTextBox ? "review-btn" : "rvw-btn-hide"}>Submit</button>
