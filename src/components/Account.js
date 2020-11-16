@@ -98,7 +98,8 @@ class Account extends React.Component{
 
 
 render(){
-    
+  let chat="https://res.cloudinary.com/dm3tfsraw/image/upload/v1605143830/icon_awzlmn.png"
+
   let userListings
     if(this.state.ready){
      userListings=this.props.currentUser.user.listings.map((list,index)=>{
@@ -108,8 +109,10 @@ render(){
               {list.getNameForReserv.length ===0 ? <button className="list-update" id={list.id} onClick={this.updateListing}>Change Availability</button> : null}
               {list.getNameForReserv.length>0 ? <h3 className="act-list-items">You are booked by: {list.getNameForReserv[0].name} </h3> :null}
               {list.getNameForReserv.length>0 ? <h3 className="act-list-items">Reservation time: {new Date(list.reservations[0].booking_time).toLocaleTimeString()}</h3>: null}
-              {list.getNameForReserv.length >0 ? <h3 className="act-list-items">Contact {list.getNameForReserv[0].name} <button onClick={this.createChatRoom} type="submit" className="text-btn-list">Message</button>
-</h3> : null}
+              {list.getNameForReserv.length >0 ? <h3 className="act-list-items">Contact {list.getNameForReserv[0].name}<img title="Send Guest A Message!" onClick={this.createChatRoom} onClick={this.createChatRoom} className="text-btn-list" src={chat} alt="Message Button"/>
+
+              {/* <button onClick={this.createChatRoom} type="submit" className="text-btn-list">Message</button> */}
+              </h3> : null}
 
               {list.reservations.length===0 ?<button className="list-delete" id={list.id} onClick={this.deleteListing}>Remove Listing</button> : null}
           </div>

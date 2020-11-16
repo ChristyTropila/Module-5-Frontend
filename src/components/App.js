@@ -21,7 +21,6 @@ state={
 }
 
 componentDidMount(){
-
   if(localStorage.token){
    fetch('http://localhost:5000/users/keep_logged_in', {
     method: 'GET',
@@ -31,23 +30,23 @@ componentDidMount(){
   })
   .then(res=>res.json())
   .then(this.helpHandleResponse)
+  this.fetchListings()
 }
 }
 
 
 helpHandleResponse=(resp)=>{
-
   localStorage.token=resp.token
   this.setState({
     currentUser: resp,
     token: resp.token
   })
-  this.fetchListings()
+ 
 }
 
 
  fetchListings=()=>{
- 
+   console.log("hit fetch listings")
   fetch('http://localhost:5000/listings')
   .then(resp=>resp.json())
   .then((listingArray)=>{
@@ -124,7 +123,6 @@ sendNetToChangeAvailability=(listing)=>{
   }
 
 updateUser=(user)=>{
- 
   fetch(`http://localhost:5000/users/${user.user_id}`)
   .then(res=>res.json())
   .then((updatedUser)=>{
@@ -189,13 +187,7 @@ render(){
 
  return (
   <div className="App">
-        <TransitionGroup>
-          <CSSTransition
-            classNames={'fade'}
-            timeout={{enter: 1000, exit: 1000}}>
-
-
-
+  
  <Switch>
   <Route path="/main">
     {this.state.currentUser.length> 0 ? <Redirect to="/login"/> :
@@ -235,10 +227,7 @@ render(){
     <Profile updateUser={this.updatedUser} currentUser={this.state.currentUser}/>
   </Route>
   </Switch>
-
-
-       </CSSTransition>
-      </TransitionGroup>
+    
     </div>
   );
 }

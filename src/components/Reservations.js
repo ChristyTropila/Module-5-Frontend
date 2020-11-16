@@ -71,6 +71,15 @@ class Reservations extends React.Component{
       convoId: res.id
     })
   })
+  .then(
+      fetch(`http://localhost:5000/conversations/${this.props.convoId}`)
+          .then(res=>res.json())
+          .then(messages => {
+                this.setState({
+                    messages: messages
+                })
+          })
+  )
   
      this.setState({
        textModal:true
@@ -99,6 +108,9 @@ closeTextModal=(evt)=>{
 
 
 render(){
+
+  let chat="https://res.cloudinary.com/dm3tfsraw/image/upload/v1605143830/icon_awzlmn.png"
+
  let userReservations
  if(this.state.ready){
     userReservations=this.props.currentUser.user.reservations.map((resv, index)=>{
@@ -107,7 +119,8 @@ render(){
      <div key={resv.id} className="card">
        <h2 className="date-text">{new Date(resv.booking_time).toDateString()}</h2>
        <h2 className="time-text">{new Date(resv.booking_time).toLocaleTimeString('en-US', { timeZone: 'America/New_York' })}</h2>
-       <button id={resv.listing_id} onClick={this.createChatRoom} type="submit" className="txt-msg-rsv">Contact</button>
+       <img title="Send Host A Message!" id={resv.listing_id} onClick={this.createChatRoom} className="txt-msg-rsv" src={chat} alt="Message Button"/>
+       {/* <button id={resv.listing_id} onClick={this.createChatRoom} type="submit" className="txt-msg-rsv">Contact</button> */}
        <textarea ref={index} className={this.state.showTextBox ? "review-box" : "review-hide"} type="text" name="review" value={this.state.index} onChange={this.handleInputChange} placeholder="Leave a Review!" />
        <button id={resv.listing_id} onClick={this.handleReviewSubmit} type="submit" className={this.state.showTextBox ? "review-btn" : "rvw-btn-hide"}>Submit</button>
        <label className="checkbox-label" for="completed"> CLOSE RESERVATION</label> 

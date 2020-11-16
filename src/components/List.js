@@ -47,6 +47,7 @@ class List extends React.Component{
     }
    
     displayMarkers = () => {
+        console.log("hit")
         return this.props.list.map((list, index) => {
           return <Marker icon={listingIcons} key={index} id={list.id}  position={{
            lat: list.lat,
@@ -58,14 +59,13 @@ class List extends React.Component{
       }
       
 render(){
-  const {lat, lng, available, user, id}=this.props.list
+//   const {lat, lng, available, user, id}=this.props.list
   const {userLocation} = this.state
 
     return(
         <> 
          {this.state.userLocation.lat !== 0 ?
-             <div className="list" 
-            >
+             <div className="list">
             <Map google={this.props.google}
                 styles={mapStyles.styles}
                 className={'map'}
@@ -82,8 +82,6 @@ render(){
                 </div>
                 : 
                 null}
- 
-
          {this.state.displayModal ? <ListModal currentUser={this.props.currentUser}
           closeListModal={this.closeListModal}
           updateUser={this.props.updateUser}

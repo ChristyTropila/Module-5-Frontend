@@ -56,8 +56,8 @@ class NavContainer extends React.Component{
  return(
     <>
      <nav className="navContainer">
-      {/* {this.state.ready ?<span className={this.props.currentUser.user.reservations.length>0 ?"resv-badge" : "resv-badge-hide"}>{this.props.currentUser.user.reservations.length}</span> : null } 
-      {this.state.ready ?<span className={this.props.currentUser.user.listings[0].reservations.length>0 ?"list-badge" : "list-badge-hide"}>{this.props.currentUser.user.listings[0].reservations.length}</span> : null }  */}
+      {/* {this.state.ready ?<span className={this.props.currentUser.user.reservations.length>0 ?"resv-badge" : "resv-badge-hide"}>{this.props.currentUser.user.reservations.length}</span> : null }  */}
+      {/* {this.state.ready ?<span className={this.props.currentUser.user.listings[0].reservations.length>0 ?"list-badge" : "list-badge-hide"}>{this.props.currentUser.user.listings[0].reservations.length}</span> : null }  */}
 
             <h1 className="logo">Spot-A-Potty</h1>
                <ul className="navList">
