@@ -30,7 +30,7 @@ class Modal extends React.Component{
          })
         })
         .then(()=>{
-            fetch('http://localhost:5000/listings', {
+            fetch('https://spot-a-potty.herokuapp.com/listings', {
                 method: 'POST',
                 headers: {
                     "Content-Type": 'Application/json',

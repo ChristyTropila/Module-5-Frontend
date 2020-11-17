@@ -30,7 +30,7 @@ class LoginRegister extends React.Component{
 
     handleLoginSubmit=(evt)=>{
         evt.preventDefault()
-        fetch(`http://localhost:5000/users/login`,{
+        fetch(`https://spot-a-potty.herokuapp.com/users/login`,{
             method: 'POST',
             headers: {
               "Content-Type": "Application/json"
@@ -60,7 +60,7 @@ class LoginRegister extends React.Component{
 
     handleSubmit=(evt)=>{
         evt.preventDefault()
-        fetch('http://localhost:5000/users', {
+        fetch('https://spot-a-potty.herokuapp.com/users', {
             method: 'POST',
             headers: {
                 "Content-Type": 'Application/json'

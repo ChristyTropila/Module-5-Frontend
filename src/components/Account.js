@@ -21,7 +21,7 @@ class Account extends React.Component{
 
 
     deleteListing=(evt)=>{
-        fetch(`http://localhost:5000/listings/${evt.target.id}`,{
+        fetch(`https://spot-a-potty.herokuapp.com/listings/${evt.target.id}`,{
          method: 'DELETE',
          headers: {
             "Authorization": localStorage.token
@@ -39,7 +39,7 @@ class Account extends React.Component{
 
 
     updateListing=(evt)=>{
-      fetch(`http://localhost:5000/listings/${evt.target.id}`, {
+      fetch(`https://spot-a-potty.herokuapp.com/listings/${evt.target.id}`, {
       method: 'PATCH',
       headers: {
         "Authorization": localStorage.token
@@ -67,7 +67,7 @@ class Account extends React.Component{
       debugger;
         console.log(this.props.currentUser)
         console.log(this.props.currentUser.user)
-        fetch('http://localhost:5000/conversations',{
+        fetch('https://spot-a-potty.herokuapp.com/conversations',{
           method: 'POST',
           headers: {
             "Content-Type": "Application/json"

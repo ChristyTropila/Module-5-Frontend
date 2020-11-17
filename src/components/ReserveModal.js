@@ -15,7 +15,7 @@ class ReserveModal extends React.Component{
  handleSubmit=(evt)=>{
 
         evt.preventDefault()
-        fetch('http://localhost:5000/reservations', {
+        fetch('https://spot-a-potty.herokuapp.com/reservations', {
             method: 'POST',
             headers: {
                 "Content-Type": 'Application/json',

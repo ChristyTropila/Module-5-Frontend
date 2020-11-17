@@ -28,7 +28,7 @@ class Profile extends React.Component{
       handleEditSubmit=(evt)=>{
           evt.preventDefault()
           console.log(this.props.currentUser.user.id)
-          fetch(`http://localhost:5000/users/${this.props.currentUser.user.id}`, {
+          fetch(`https://spot-a-potty.herokuapp.com/users/${this.props.currentUser.user.id}`, {
             method: 'PATCH',
             headers: {
                 "Content-Type": 'Application/json',

@@ -22,7 +22,7 @@ state={
 
 componentDidMount(){
   if(localStorage.token){
-   fetch('http://localhost:5000/users/keep_logged_in', {
+   fetch('https://spot-a-potty.herokuapp.com/users/keep_logged_in', {
     method: 'GET',
     headers: {
       "Authorization": localStorage.token
@@ -47,7 +47,7 @@ helpHandleResponse=(resp)=>{
 
  fetchListings=()=>{
    console.log("hit fetch listings")
-  fetch('http://localhost:5000/listings')
+  fetch('https://spot-a-potty.herokuapp.com/listings')
   .then(resp=>resp.json())
   .then((listingArray)=>{
     this.setState({
@@ -61,7 +61,7 @@ helpHandleResponse=(resp)=>{
 //When a user reserves a listing, update the available attritute to false
 sendNetToChangeAvailability=(listing)=>{
 
-  fetch(`http://localhost:5000/listings/${listing.listing_id}`, {
+  fetch(`https://spot-a-potty.herokuapp.com/listings/${listing.listing_id}`, {
     method: 'PATCH',
     headers: {
         "Content-Type": 'Application/json', 
@@ -123,7 +123,7 @@ sendNetToChangeAvailability=(listing)=>{
   }
 
 updateUser=(user)=>{
-  fetch(`http://localhost:5000/users/${user.user_id}`)
+  fetch(`https://spot-a-potty.herokuapp.com/users/${user.user_id}`)
   .then(res=>res.json())
   .then((updatedUser)=>{
     this.setState({
@@ -135,7 +135,7 @@ updateUser=(user)=>{
 }
 
 updatedUser=(user)=>{
-  fetch(`http://localhost:5000/users/${user}`)
+  fetch(`https://spot-a-potty.herokuapp.com/users/${user}`)
   .then(res=>res.json())
   .then((updatedUser)=>{
     this.setState({
@@ -160,7 +160,7 @@ sendNetToGetListing=(newListing)=>{
   }
 
   getConvData=(id)=>{
-    fetch(`http://localhost:5000/conversations/${id}`)
+    fetch(`https://spot-a-potty.herokuapp.com/conversations/${id}`)
     .then(res=>res.json())
     .then(result => {
       this.setState({

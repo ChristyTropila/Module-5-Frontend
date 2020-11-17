@@ -35,7 +35,7 @@ class Reservations extends React.Component{
      this.setState({
        showTextBox: false
      })
-     fetch('http://localhost:5000/reviews',{
+     fetch('https://spot-a-potty.herokuapp.com/reviews',{
        method: 'POST',
        headers: {
         "Content-Type": 'Application/json'
@@ -55,7 +55,7 @@ class Reservations extends React.Component{
 
   createChatRoom=(evt)=>{
     console.log(this.props.currentUser)
-    fetch('http://localhost:5000/conversations',{
+    fetch('https://spot-a-potty.herokuapp.com/conversations',{
       method: 'POST',
       headers: {
         "Content-Type": "Application/json"
@@ -72,7 +72,7 @@ class Reservations extends React.Component{
     })
   })
   .then(
-      fetch(`http://localhost:5000/conversations/${this.props.convoId}`)
+      fetch(`https://spot-a-potty.herokuapp.com/conversations/${this.props.convoId}`)
           .then(res=>res.json())
           .then(messages => {
                 this.setState({
@@ -87,7 +87,7 @@ class Reservations extends React.Component{
    }
 
   handleClick=(evt)=>{
-    fetch(`http://localhost:5000/reservations/${evt.target.id}`,{
+    fetch(`https://spot-a-potty.herokuapp.com/reservations/${evt.target.id}`,{
       method: 'DELETE',
       headers: {
         "Authorization": localStorage.token

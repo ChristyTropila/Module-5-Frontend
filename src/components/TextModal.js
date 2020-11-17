@@ -10,7 +10,7 @@ class TextModal extends React.Component{
    
   componentDidMount(){
        console.log("component mount hit")
-        fetch(`http://localhost:5000/conversations/${this.props.convoId}`)
+        fetch(`https://spot-a-potty.herokuapp.com/conversations/${this.props.convoId}`)
           .then(res=>res.json())
           .then(messages => {
                 this.setState({
@@ -39,7 +39,7 @@ class TextModal extends React.Component{
        handleSubmit=(e)=> {
          e.preventDefault();
          let user_id=this.props.currentUser.user.id
-         fetch('http://localhost:5000/messages',{
+         fetch('https://spot-a-potty.herokuapp.com/messages',{
              method: "POST",
              headers: {
                "Content-Type": "Application/json"
