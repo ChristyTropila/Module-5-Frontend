@@ -1,6 +1,7 @@
 # Spot-A-Potty
 
-[![Watch Demo](https://i.imgur.com/JngmKP10AZs.png)](https://youtu.be/JngmKP10AZs)
+[![](http://img.youtube.com/vi/JngmKP10AZs/0.jpg)](http://www.youtube.com/watch?v=JngmKP10AZs "spotpotty")
+
 
 
 My final project at Flatiron. Spot-A-Potty is a bathroom hosting platform to help users find a bathroom quickly Users can also choose to host their bathroom for other users to use.
